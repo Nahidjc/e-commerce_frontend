@@ -1,9 +1,24 @@
 import React from 'react';
+import { Container, Nav, Navbar } from 'react-bootstrap';
 
 const Header = () => {
     return (
         <header>
-            header
+            <Navbar bg="dark" variant='dark' expand="sm" collapseOnSelect>
+                <Container>
+                    <Navbar.Brand href="/">NihaShopBD</Navbar.Brand>
+                    <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                    <Navbar.Collapse id="basic-navbar-nav">
+                        <Nav className="me-auto">
+                            <Nav.Link href="/cart">
+                                <i class="fas fa-shopping-cart" ></i>
+                                Cart</Nav.Link>
+                            <Nav.Link href="/login"><i class="fas fa-user" ></i>Login</Nav.Link>
+
+                        </Nav>
+                    </Navbar.Collapse>
+                </Container>
+            </Navbar>
         </header>
     );
 };

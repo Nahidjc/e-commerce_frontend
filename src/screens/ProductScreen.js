@@ -1,15 +1,26 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import { Button, Card, Col, Image, ListGroup, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import Rating from '../components/Rating';
-import products from '../products';
+
 
 const ProductScreen = ({ match }) => {
     let params = useParams();
-    console.log(match);
-    const product = products.find(p => p._id == params.id)
-    console.log(product);
+    const [product, setProdut] = useState([])
+
+    useEffect(() => {
+        async function fetchProducts() {
+
+            const { data } = await axios.get(`/api/products/${params.id}`)
+            console.log(data);
+            setProdut(data)
+
+        }
+        fetchProducts();
+
+    }, [])
     return (
         <div>
             <Link to='/' className='btn btn-light my-3'><i class="fas fa-angle-double-left"></i> Go Back</Link>
@@ -23,7 +34,7 @@ const ProductScreen = ({ match }) => {
                             <h3>{product.name}</h3>
                         </ListGroup.Item>
                         <ListGroup.Item>
-                            <Rating value={product.rating} text={`${product.numReviews} reviews`} color={"#f78205"} />
+                            <Rating key={product._id} value={product.rating} text={`${product.numReviews} reviews`} color={"#f78205"} />
                         </ListGroup.Item>
 
                         <ListGroup.Item>
@@ -58,7 +69,7 @@ const ProductScreen = ({ match }) => {
 
                             <ListGroup.Item>
                                 <div className='d-flex justify-content-center'>
-                                    <Button className='btn-block ' disabled={product.countInStock == 0} type='button'>Add to Cart</Button>
+                                    <Button className='btn-block ' disabled={product.countInStock === 0} type='button'>Add to Cart</Button>
                                 </div>
 
                             </ListGroup.Item>

@@ -5,7 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { listProducts } from '../actions/productActions';
 import Loader from '../components/Loader';
 import Message from '../components/Message';
-
+import { Bars } from 'react-loader-spinner'
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 const HomeScreen = () => {
     const dispatch = useDispatch()
     const productList = useSelector(state => state.productList)
@@ -17,7 +18,7 @@ const HomeScreen = () => {
     return (
         <div>
             <h1>Latest Products</h1>
-            {loading ? <Loader />
+            {loading ? <div className="d-flex justify-content-center align-items-center " style={{ height: '80vh' }}> <Bars color="#00BFFF" height={80} width={80} /></div>
                 : error ? <Message variant='danger'>{error}</Message>
                     :
                     <Row>

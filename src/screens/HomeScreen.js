@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { listProducts } from '../actions/productActions';
 import Message from '../components/Message';
 import { Bars } from 'react-loader-spinner'
-import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+
 const HomeScreen = () => {
     const dispatch = useDispatch()
     const productList = useSelector(state => state.productList)

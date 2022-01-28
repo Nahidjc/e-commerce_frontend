@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
-import { addToCart } from '../actions/cartActions';
-import { Button, Card, CarouselItem, Col, Form, Image, ListGroup, ListGroupItem, Row } from 'react-bootstrap';
+import { addToCart, removeFromCart } from '../actions/cartActions';
+import { Button, Card, Col, Form, Image, ListGroup, Row } from 'react-bootstrap';
 import Message from '../components/Message';
 const CartScreen = () => {
     let location = useLocation();
@@ -15,7 +15,7 @@ const CartScreen = () => {
     const cart = useSelector(state => state.cart);
     const { cartItems } = cart;
     const removeFromCartHandler = (id) => {
-        console.log('Remove product', id);
+        dispatch(removeFromCart(id))
     }
     const checkoutHandler = () => {
         history('/login?redirect=shipping')
@@ -94,15 +94,19 @@ const CartScreen = () => {
                         </ListGroup.Item>
                     </ListGroup>
                     <ListGroup.Item>
-                        <Button
-                            type='button'
-                            className='btn-block'
-                            disabled={cartItems.length === 0}
-                            onClick={checkoutHandler}
 
-                        >
-                            Proceed To Checkout
-                        </Button>
+                        <div className='d-flex justify-content-center'>
+                            <Button
+                                type='button'
+                                className='btn-block '
+                                disabled={cartItems.length === 0}
+                                onClick={checkoutHandler}
+
+                            >
+                                Proceed To Checkout
+                            </Button>
+                        </div>
+
                     </ListGroup.Item>
                 </Card>
             </Col>

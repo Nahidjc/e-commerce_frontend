@@ -1,29 +1,29 @@
 import axios from "axios"
 import { USER_LOGIN_FAIL, USER_LOGIN_REQUEST, USER_LOGIN_SUCCESS, USER_LOGOUT } from "../constants/userConstants"
 
-export const login =(email,password)=> async(dispatch)=>{
+export const login = (email, password) => async (dispatch) => {
 
-    try{
+    try {
         dispatch({
-            type:USER_LOGIN_REQUEST
+            type: USER_LOGIN_REQUEST
         })
-        const config={
-            headers:{
-                'Content-type':'application/json'
+        const config = {
+            headers: {
+                'Content-type': 'application/json'
             }
         }
-        const {data} = await axios.post(
+        const { data } = await axios.post(
             'http://127.0.0.1:8000/api/users/login',
-            {'username':email,'password':password},
+            { 'username': email, 'password': password },
             config
-            )
+        )
         dispatch({
-            type:USER_LOGIN_SUCCESS,
-            payload:data
+            type: USER_LOGIN_SUCCESS,
+            payload: data
         })
-        localStorage.setItem('userInfo',JSON.stringify(data))
+        localStorage.setItem('userInfo', JSON.stringify(data))
 
-    }catch(error){
+    } catch (error) {
         dispatch({
             type: USER_LOGIN_FAIL,
             payload: error.response && error.response.data.detail
@@ -32,4 +32,9 @@ export const login =(email,password)=> async(dispatch)=>{
 
         })
     }
+}
+
+export const logout = () => (dispatch) => {
+    localStorage.removeItem('userInfo');
+    dispatch({ type: USER_LOGOUT })
 }

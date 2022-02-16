@@ -6,12 +6,13 @@ import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
 import { login } from '../actions/userActions';
 import FormContainer from '../components/FormContainer';
 import Message from '../components/Message';
+import { ToastContainer, toast } from 'react-toastify';
 
+import 'react-toastify/dist/ReactToastify.css';
 
 const LoginScreen = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('');
-
     let location = useLocation();
     let params = useParams();
     const dispatch = useDispatch();
@@ -22,9 +23,14 @@ const LoginScreen = () => {
 
     useEffect(() => {
         if (userInfo) {
+            toast.success("Successfully Login Done!");
             history(redirect);
         }
-    }, [history, userInfo, redirect])
+        if (error) {
+            console.log(error);
+            toast.error(error);
+        }
+    }, [history, userInfo, redirect, error])
 
     const submitHandler = (e) => {
         e.preventDefault();
@@ -38,6 +44,8 @@ const LoginScreen = () => {
             {error && <Message variant='danger'>{error}</Message>}
             {loading && <div className="d-flex justify-content-center align-items-center " style={{ height: '80vh' }}> <Bars color="#00BFFF" height={80} width={80} /></div>}
             <Form onSubmit={submitHandler}>
+                <ToastContainer />
+
                 <Form.Group controlId='email'>
                     <Form.Label>Email Address</Form.Label>
                     <Form.Control

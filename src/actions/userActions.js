@@ -26,6 +26,7 @@ export const login = (email, password) => async (dispatch) => {
             config
         )
         dispatch({
+
             type: USER_LOGIN_SUCCESS,
             payload: data
         })

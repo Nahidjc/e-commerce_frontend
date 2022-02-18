@@ -3,9 +3,10 @@ import { Button, Col, Container, Form, Row } from 'react-bootstrap';
 import { Bars } from 'react-loader-spinner';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
-import { getUserDetails, login, register } from '../actions/userActions';
+import { getUserDetails, getUserUpdateProfile, login, register } from '../actions/userActions';
 import FormContainer from '../components/FormContainer';
 import Message from '../components/Message';
+import { USER_UPDATE_PROFILE_RESET } from '../constants/userConstants';
 
 const ProfileScreen = () => {
     const [message, setMessage] = useState('')
@@ -19,26 +20,36 @@ const ProfileScreen = () => {
     const { error, loading, user } = userDetails;
     const userLogin = useSelector(state => state.userLogin);
     const { userInfo } = userLogin
+    const userProfileUpdate = useSelector(state => state.userProfileUpdate);
+    const { success } = userProfileUpdate
     useEffect(() => {
         if (!userInfo) {
             history('/login')
 
         } else {
-            if (!user || !user.name) {
+            console.log(success);
+            if (!user || !user.name || success) {
+                dispatch({ type: USER_UPDATE_PROFILE_RESET })
                 dispatch(getUserDetails('profile'))
             } else {
                 setName(user.name)
                 setEmail(user.email)
             }
         }
-    }, [history, userInfo, history, user])
+    }, [history, userInfo, history, user, success])
 
     const submitHandler = (e) => {
         e.preventDefault();
-        if (password) {
-            if (password !== confirmPassword) {
-                setMessage("Passwords do not match")
-            }
+
+        if (password !== confirmPassword) {
+            setMessage("Passwords do not match")
+        } else {
+            dispatch(getUserUpdateProfile({
+                'id': user._id,
+                'name': name,
+                'email': email,
+                'password': password
+            }))
         }
 
 
@@ -47,7 +58,7 @@ const ProfileScreen = () => {
     return (
         <div>
             <Row>
-                <Col md={6} xs={8} lg="5">
+                <Col md={8} xs={8} lg={8}>
                     <FormContainer>
                         <h1>User Profile</h1>
                         {message && <Message variant='danger'>{message}</Message>}

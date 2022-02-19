@@ -4,6 +4,7 @@ import { Bars } from 'react-loader-spinner';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
 import { saveShippingAddress } from '../actions/cartActions';
+import CheckoutSteps from '../components/CheckoutSteps';
 import FormContainer from '../components/FormContainer';
 import Message from '../components/Message';
 
@@ -27,6 +28,7 @@ const ShippingScreen = () => {
 
     return (
         <FormContainer>
+            <CheckoutSteps step1 step2 />
             <h1>Shipping Address</h1>
 
 

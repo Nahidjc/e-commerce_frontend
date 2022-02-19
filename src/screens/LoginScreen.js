@@ -25,7 +25,7 @@ const LoginScreen = () => {
         console.log(redirect);
         if (userInfo) {
             toast.success("Successfully Login Done!");
-            navigate(`/${redirect}`)
+            navigate(redirect)
         }
         if (error) {
             console.log(error);

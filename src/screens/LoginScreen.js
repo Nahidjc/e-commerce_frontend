@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Button, Col, Container, Form, Row } from 'react-bootstrap';
 import { Bars } from 'react-loader-spinner';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
+import { Link, useLocation, useNavigate, useParams, Navigate } from 'react-router-dom';
 import { login } from '../actions/userActions';
 import FormContainer from '../components/FormContainer';
 import Message from '../components/Message';
@@ -10,27 +10,28 @@ import { ToastContainer, toast } from 'react-toastify';
 
 import 'react-toastify/dist/ReactToastify.css';
 
+
 const LoginScreen = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('');
     let location = useLocation();
-    let params = useParams();
     const dispatch = useDispatch();
-    const history = useNavigate();
+    const navigate = useNavigate();
     const redirect = location.search ? location.search.split('=')[1] : '/';
     const userLogin = useSelector(state => state.userLogin);
     const { error, loading, userInfo } = userLogin;
 
     useEffect(() => {
+        console.log(redirect);
         if (userInfo) {
             toast.success("Successfully Login Done!");
-            history(redirect);
+            navigate(`/${redirect}`)
         }
         if (error) {
             console.log(error);
             toast.error(error);
         }
-    }, [history, userInfo, redirect, error])
+    }, [navigate, userInfo, redirect, error])
 
     const submitHandler = (e) => {
         e.preventDefault();

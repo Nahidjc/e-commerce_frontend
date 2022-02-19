@@ -18,7 +18,7 @@ const CartScreen = () => {
         dispatch(removeFromCart(id))
     }
     const checkoutHandler = () => {
-        history('/login?redirect=shipping')
+        history(`/login?redirect=shipping`)
     }
     console.log(cartItems);
     useEffect(() => {

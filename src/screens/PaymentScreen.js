@@ -36,9 +36,8 @@ const PaymentScreen = () => {
                             type="radio"
                             label='PayPal or Credit Card'
                             id='paypal'
-                            name='paymentMethod'
+                            name='paymentMethod1'
                             value="PayPal"
-
                             onChange={(e) => setPaymentMethod(e.target.value)}
 
                         >
@@ -49,7 +48,7 @@ const PaymentScreen = () => {
                             checked
                             label='SSLCOMMERZ'
                             id='sslcommerz'
-                            name='paymentMethod'
+                            name='paymentMethod2'
                             value="SSLCOMMERZ"
                             onChange={(e) => setPaymentMethod(e.target.value)}
 

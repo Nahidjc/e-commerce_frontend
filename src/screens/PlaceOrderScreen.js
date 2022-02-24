@@ -4,25 +4,55 @@ import { Bars } from 'react-loader-spinner';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
 import { savePaymentMethod, saveShippingAddress } from '../actions/cartActions';
+import { createOrder } from '../actions/orderActions';
 import CheckoutSteps from '../components/CheckoutSteps';
 import Message from '../components/Message';
+import { ORDER_CREATE_RESET } from '../constants/orderConstants';
 const PlaceOrderScreen = () => {
     let location = useLocation();
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const orderCreate = useSelector(state => state.orderCreate)
+    const { error, success, loading, order } = orderCreate
     const cart = useSelector(state => state.cart)
     cart.itemPrice = cart.cartItems.reduce((acc, item) => acc + item.price * item.qty, 0).toFixed(2)
     cart.shippingPrice = (cart.itemPrice > 100 ? 0 : 10).toFixed(2)
     cart.taxPrice = Number((0.082) * cart.itemPrice).toFixed(2)
     cart.totalPrice = (Number(cart.itemPrice) + Number(cart.shippingPrice) + Number(cart.taxPrice)).toFixed(2)
+
+    useEffect(() => {
+        if (success) {
+            navigate(`/order/${order._id}`)
+            dispatch({ type: ORDER_CREATE_RESET })
+        }
+    }, [success, navigate])
+
+    if (!cart.paymentMethod) {
+        navigate('/payment')
+    }
+
     const placeOrder = () => {
-        console.log("placeorder");
+        const order = {
+            orderItems: cart.cartItems,
+            shippingAddress: cart.shippingAddress,
+            paymentMethod: cart.paymentMethod,
+            itemsPrice: cart.itemsPrice,
+            shippingPrice: cart.shippingPrice,
+            taxPrice: cart.taxPrice,
+            totalPrice: cart.totalPrice,
+        }
+        console.log(order);
+        dispatch(
+            createOrder(
+                order
+            )
+        )
     }
     return (
 
         <div>
             <CheckoutSteps step1 step2 step3 step4 />
-            <Row>
+            {loading ? <div className="d-flex justify-content-center align-items-center " style={{ height: '80vh' }}> <Bars color="#00BFFF" height={80} width={80} /></div> : <Row>
                 <Col md={8}>
                     <ListGroup.Item>
                         <h2>Shipping</h2>
@@ -102,6 +132,9 @@ const PlaceOrderScreen = () => {
                                 </Row>
                             </ListGroup.Item>
                             <ListGroup.Item>
+                                {error && <Message variant='danger'>{error}</Message>}
+                            </ListGroup.Item>
+                            <ListGroup.Item>
                                 <Button
                                     type='button'
                                     className='btn-block'
@@ -113,7 +146,7 @@ const PlaceOrderScreen = () => {
                     </Card>
                 </Col>
             </Row>
-
+            }
         </div>
     );
 };

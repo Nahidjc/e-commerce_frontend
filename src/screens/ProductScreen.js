@@ -15,6 +15,7 @@ const ProductScreen = ({ match }) => {
     const history = useNavigate();
     const productDetails = useSelector(state => state.productDetails)
     const { error, loading, product } = productDetails
+    console.log(product);
     const [qty, setQty] = useState(1)
     useEffect(() => {
         dispatch(listProductDetails(params.id))
@@ -33,7 +34,7 @@ const ProductScreen = ({ match }) => {
                     ? <Message variant='danger'>{error}</Message>
                     : (<Row>
                         <Col md={6}>
-                            <Image src={product.image} alt={product.name} fluid />
+                            <Image src={`http://127.0.0.1:8000${product.image}`} alt={product.name} fluid />
                         </Col>
                         <Col md={3}>
                             <ListGroup variant='flush'>

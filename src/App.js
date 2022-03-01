@@ -16,11 +16,13 @@ import ProfileScreen from "./screens/ProfileScreen";
 import ShippingScreen from "./screens/ShippingScreen";
 import PaymentScreen from "./screens/PaymentScreen";
 import PlaceOrderScreen from "./screens/PlaceOrderScreen";
+import Navbar from "./components/Navbar/Navbar";
 
 function App() {
   return (
     <Router>
-      <Header></Header>
+      <Navbar></Navbar>
+      {/* <Header></Header> */}
       <main className="py-3">
         <Container>
           <Routes >

@@ -1,10 +1,10 @@
 import React from 'react';
 // import { Card } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
-import Rating from './Rating';
+// import Rating from './Rating';
 
 
-
+import './style.css'
 
 import { styled } from "@mui/material/styles";
 import Card from "@mui/material/Card";
@@ -22,8 +22,9 @@ import ShareIcon from "@mui/icons-material/Share";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { Button } from '@mui/material';
+import Rating from './Rating';
 
-
+// import Rating from 'react-rating';
 
 
 
@@ -85,8 +86,8 @@ const Product = ({ product }) => {
                 <CardActions disableSpacing>
 
 
-
                     <div className="my-1">
+
                         <Rating value={product.rating} text={`${product.numReviews} reviews`} color={"#f78205"}></Rating>
 
                     </div>

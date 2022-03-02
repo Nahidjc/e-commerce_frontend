@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
 import { addToCart, removeFromCart } from '../actions/cartActions';
 import { Button, Card, Col, Form, Image, ListGroup, Row } from 'react-bootstrap';
 import Message from '../components/Message';
+import DeleteIcon from '@mui/icons-material/Delete';
 const CartScreen = () => {
     let location = useLocation();
     let params = useParams();
@@ -50,7 +51,7 @@ const CartScreen = () => {
                                         <Image src={`http://127.0.0.1:8000${item.image}`} alt={item.name} fluid rounded />
                                     </Col>
                                     <Col md={3}>
-                                        <Link to={`/product/${item.product}`}>{item.name}</Link>
+                                        <Link style={{ textDecoration: 'none' }} to={`/product/${item.product}`}>{item.name}</Link>
                                     </Col>
                                     <Col md={2}>
                                         ${item.price}
@@ -76,7 +77,7 @@ const CartScreen = () => {
                                             variant='light'
                                             onClick={() => removeFromCartHandler(item.product)}
                                         >
-                                            <i className='fas fa-trash'></i>
+                                            <DeleteIcon color="warning" />
                                         </Button>
                                     </Col>
 

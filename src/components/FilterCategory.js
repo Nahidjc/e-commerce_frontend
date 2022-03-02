@@ -30,7 +30,8 @@ export default function FilterCategory() {
                     <MenuItem value={20}>Mobile Phone</MenuItem>
                     <MenuItem value={30}>Laptop</MenuItem>
                     <MenuItem value={40}>Camera</MenuItem>
-                    <MenuItem value={50}>Cloth</MenuItem>
+                    <MenuItem value={50}>Man's Clothing</MenuItem>
+                    <MenuItem value={60}>Women's Clothing</MenuItem>
                 </Select>
                 <FormHelperText>
 

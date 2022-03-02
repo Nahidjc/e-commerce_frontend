@@ -1,16 +1,11 @@
 import {
     makeStyles,
     Grid,
-    List,
-    ListItem,
-    ListItemAvatar,
-    ListItemText,
-    Typography,
-    Paper,
+
 } from "@material-ui/core";
-import React, { useContext } from "react";
+import React from "react";
 // import Avatar from "react-avatar";
-import { Link } from "react-router-dom";
+
 import { Slide } from "react-slideshow-image";
 import "react-slideshow-image/dist/styles.css";
 // import { GlobalState } from "../GlobalState";

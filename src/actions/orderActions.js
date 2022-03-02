@@ -50,7 +50,7 @@ export const createOrder = (order) => async (dispatch, getState) => {
 
 
 
-export const detailsOrder = (id) => async (dispatch, getState) => {
+export const getOrderDetails = (id) => async (dispatch, getState) => {
 
 
     try {
@@ -65,7 +65,7 @@ export const detailsOrder = (id) => async (dispatch, getState) => {
                 Authorization: `Bearer ${userInfo.token}`
             }
         }
-        const { data } = await axios.post(
+        const { data } = await axios.get(
             `http://127.0.0.1:8000/api/orders/${id}/`,
             config
         )

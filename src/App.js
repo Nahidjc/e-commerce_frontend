@@ -19,6 +19,8 @@ import PlaceOrderScreen from "./screens/PlaceOrderScreen";
 import Navbar from "./components/Navbar/Navbar";
 import Login from "./components/Authentication/Login";
 import Registration from "./components/Authentication/Registration";
+import UserList from "./components/UserList";
+import OrderScreen from "./screens/OrderScreen";
 
 function App() {
   return (
@@ -30,6 +32,7 @@ function App() {
           <Routes >
             <Route path='/' element={<HomeScreen />} exact />
             <Route path='/login' element={<Login />} />
+            <Route path='/userlist' element={<UserList />} />
             <Route path='/register' element={<Registration />} />
             <Route path='/profile' element={<ProfileScreen />} />
             <Route path='/product/:id' element={<ProductScreen />} />
@@ -38,6 +41,7 @@ function App() {
             <Route path='/placeorder' element={<PlaceOrderScreen />} />
             <Route path='/cart' element={<CartScreen />} />
             <Route path='/cart/:id/*' element={<CartScreen />} />
+            <Route path='/order/:id/*' element={<OrderScreen />} />
           </Routes>
 
         </Container>

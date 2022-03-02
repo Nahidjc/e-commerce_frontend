@@ -6,10 +6,11 @@ import Message from '../components/Message'
 import Loader from '../components/Loader'
 import { getOrderDetails } from '../actions/orderActions'
 import { useDispatch, useSelector } from 'react-redux'
+import OrderCalculation from '../components/Order/OrderCalculation';
+import { Bars } from 'react-loader-spinner';
 const OrderScreen = () => {
     let params = useParams();
     const orderId = params.id;
-    console.log(orderId);
     let location = useLocation();
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -25,7 +26,6 @@ const OrderScreen = () => {
 
 
     useEffect(() => {
-        console.log(order);
 
         if (!userInfo) {
             navigate('/login')
@@ -39,7 +39,7 @@ const OrderScreen = () => {
     }, [dispatch, order, orderId])
 
     return loading ? (
-        <Loader />
+        <div className="d-flex justify-content-center align-items-center " style={{ height: '80vh' }}> <Bars color="#00BFFF" height={80} width={80} /></div>
     ) : error ? (
         <Message variant='danger'>{error}</Message>
     ) : (
@@ -112,8 +112,9 @@ const OrderScreen = () => {
 
                 </Col>
 
-                <Col md={4}>
-                    <Card>
+                <Col md={6}>
+                    <OrderCalculation order={order} />
+                    {/* <Card>
                         <ListGroup variant='flush'>
                             <ListGroup.Item>
                                 <h2>Order Summary</h2>
@@ -152,7 +153,7 @@ const OrderScreen = () => {
                         </ListGroup>
 
 
-                    </Card>
+                    </Card> */}
                 </Col>
             </Row>
         </div>

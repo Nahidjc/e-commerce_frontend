@@ -35,9 +35,9 @@ const RegisterScreen = () => {
         } else {
             dispatch(register(name, email, password));
         }
-
-
     }
+
+
 
     return (
         <FormContainer>

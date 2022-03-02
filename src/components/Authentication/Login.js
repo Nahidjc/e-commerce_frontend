@@ -34,7 +34,7 @@ const theme = createTheme();
 
 
 const Login = () => {
-
+    const [message, setMessage] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('');
     let location = useLocation();
@@ -64,6 +64,7 @@ const Login = () => {
 
         if (!email) {
             emailError = true
+            setMessage("Email field is required.")
             toast.error("Email field is required.");
         }
         if (email) {
@@ -72,6 +73,7 @@ const Login = () => {
                 : true
 
             if (emailError) {
+                setMessage("Email is not valid.");
                 toast.error("Email is not valid.");
 
             }
@@ -139,6 +141,7 @@ const Login = () => {
                         Sign in
                     </Typography>
                     <Box component="form" onSubmit={submitHandler} noValidate sx={{ mt: 1 }}>
+                        {message && <Message variant='danger'>{message}</Message>}
                         <TextField
                             margin="normal"
                             required

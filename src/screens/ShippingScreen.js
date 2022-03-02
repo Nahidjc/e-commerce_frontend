@@ -34,7 +34,7 @@ const ShippingScreen = () => {
 
             <Form onSubmit={submitHandler}>
                 <Form.Group controlId='address'>
-                    <Form.Label>Name</Form.Label>
+                    <Form.Label>District</Form.Label>
                     <Form.Control
                         required
                         type='address'
@@ -48,7 +48,7 @@ const ShippingScreen = () => {
                     </Form.Control>
                 </Form.Group>
                 <Form.Group controlId='city'>
-                    <Form.Label>Email Address</Form.Label>
+                    <Form.Label>Address</Form.Label>
                     <Form.Control
                         required
                         type='city'

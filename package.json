@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@emotion/react": "latest",
+    "history": "5.0.0",
     "@emotion/styled": "latest",
     "@material-ui/core": "4.11.4",
     "@material-ui/icons": "4.11.2",

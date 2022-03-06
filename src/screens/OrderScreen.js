@@ -1,9 +1,8 @@
 import React from 'react';
-import { useState, useEffect } from 'react'
-import { Button, Row, Col, ListGroup, Image, Card } from 'react-bootstrap'
-import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useEffect } from 'react'
+import { Row, Col, ListGroup, Image } from 'react-bootstrap'
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import Message from '../components/Message'
-import Loader from '../components/Loader'
 import { getOrderDetails } from '../actions/orderActions'
 import { useDispatch, useSelector } from 'react-redux'
 import OrderCalculation from '../components/Order/OrderCalculation';
@@ -11,7 +10,6 @@ import { Bars } from 'react-loader-spinner';
 const OrderScreen = () => {
     let params = useParams();
     const orderId = params.id;
-    let location = useLocation();
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const orderDetails = useSelector(state => state.orderDetails)

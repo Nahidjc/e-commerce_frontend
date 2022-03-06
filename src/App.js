@@ -41,10 +41,10 @@ function App() {
             <Route path='/shipping' element={<ShippingScreen />} />
             <Route path='/payment' element={<PaymentScreen />} />
             <Route path='/placeorder' element={<PlaceOrderScreen />} />
-            <Route path='/carts' element={<CartPage />} />
-            <Route path='/carts/:id/*' element={<CartPage />} />
-            <Route path='/cart' element={<CartScreen />} />
-            <Route path='/cart/:id/*' element={<CartScreen />} />
+            <Route path='/cart' element={<CartPage />} />
+            <Route path='/cart/:id/*' element={<CartPage />} />
+            {/* <Route path='/cart' element={<CartScreen />} />
+            <Route path='/cart/:id/*' element={<CartScreen />} /> */}
             <Route path='/order/:id/*' element={<OrderScreen />} />
           </Routes>
 

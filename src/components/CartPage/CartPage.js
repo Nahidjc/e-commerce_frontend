@@ -1,5 +1,11 @@
 import { useEffect } from "react";
 import emptyImage from './EmptyCart.png';
+import Accordion from '@material-ui/core/Accordion';
+import AccordionSummary from '@material-ui/core/AccordionSummary';
+import AccordionDetails from '@material-ui/core/AccordionDetails';
+import Typography from '@material-ui/core/Typography';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import { addToCart } from "../../actions/cartActions";
@@ -95,6 +101,12 @@ export default function CartPage() {
                                     </span>
                                 </div>
                                 <div className="Price-breakup-row">
+                                    <span className="Price-title">Tax</span>
+                                    <span> ${cart.taxPrice}</span>
+
+
+                                </div>
+                                <div className="Price-breakup-row">
                                     <span className="Price-title">Delivery Charges</span>
                                     {cart.shippingPrice ? <span>${cart.shippingPrice}</span> :
                                         <span className="Price-value color-green">FREE</span>}
@@ -109,8 +121,25 @@ export default function CartPage() {
                                 </div>
                             </div>
                         </div>
+                        <div>
+                            <Accordion className="mt-3 py-2">
+                                <AccordionSummary
+                                    expandIcon={<ExpandMoreIcon />}
+                                    aria-controls="panel1a-content"
+                                    id="panel1a-header"
+                                >
+                                    <Typography>Add a discount code (optional)</Typography>
+                                </AccordionSummary>
+                                <AccordionDetails>
+                                    <div className="d-flex flex-column" style={{ width: "100%" }}>
+                                        <input type="text" class="form-control" placeholder="Your Discount Code" />
+                                        <button className="btn btn-primary btn-block mt-3">SUBMIT</button>
+                                    </div>
+                                </AccordionDetails>
+                            </Accordion>
+                        </div>
                         <div className="Button-container">
-                            <button className="Checkout-button" onClick={checkoutHandler}>Place Order</button>
+                            <button className="Checkout-button btn-block" onClick={checkoutHandler}>Proceed To Checkout</button>
                         </div>
                     </div>
                 </section>

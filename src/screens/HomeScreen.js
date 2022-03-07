@@ -11,6 +11,7 @@ import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import ProductCarosel from '../components/ProductCarosel';
 import FilterCategory from '../components/FilterCategory';
+import FeaturedProducts from '../components/FeatureProduct/FeaturedProducts';
 
 const Item = styled(Paper)(({ theme }) => ({
     ...theme.typography.body2,
@@ -29,39 +30,46 @@ const HomeScreen = () => {
     }, [dispatch])
     return (
         <div>
-            <div className="row">
-                <div className="col-md-3">
-                    <FilterCategory />
-                </div>
-                <div className="col-md-9">
-                    <ProductCarosel />
+            <div className="container">
+                <div className="row ">
+                    <div className="col-md-3">
+                        <FilterCategory />
+                    </div>
+                    <div className="col-md-9">
+                        <ProductCarosel />
+                    </div>
                 </div>
             </div>
+
             {loading ? <div className="d-flex justify-content-center align-items-center " style={{ height: '80vh' }}> <Bars color="#00BFFF" height={80} width={80} /></div>
                 : error ? <Message variant='danger'>{error}</Message>
-                    :
-                    <div className="mb-5">
+                    : <>
+                        <FeaturedProducts featured={products} />
+                        <div className="mb-5 container">
 
 
-                        <div className='row'>
+                            <div className='row'>
 
-                            <div className='col-md-12'>
-                                <div className="row">
-                                    {
-                                        products.map(product => (
+                                <div className='col-md-12'>
+                                    <div className="row">
+                                        {
+                                            products.map(product => (
 
-                                            <Product key={product._id} product={product}></Product>
+                                                <Product key={product._id} product={product}></Product>
 
-                                        ))
-                                    }
+                                            ))
+                                        }
+                                    </div>
+
+
+
                                 </div>
 
-
-
                             </div>
-
                         </div>
-                    </div>
+
+
+                    </>
 
 
 

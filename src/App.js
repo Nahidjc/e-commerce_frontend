@@ -23,32 +23,34 @@ import Registration from "./components/Authentication/Registration";
 import UserList from "./components/UserList";
 import OrderScreen from "./screens/OrderScreen";
 import CartPage from "./components/CartPage/CartPage";
+import NavbarNew from "./components/Navbar/NavbarNew";
 
 function App() {
   return (
     <Router>
-      <Navbar></Navbar>
+      <NavbarNew />
+      {/* <Navbar></Navbar> */}
       {/* <Header></Header> */}
       <main className="py-3">
-        <Container>
-          <Routes >
-            <Route path='/' element={<HomeScreen />} exact />
-            <Route path='/login' element={<Login />} />
-            <Route path='/userlist' element={<UserList />} />
-            <Route path='/register' element={<Registration />} />
-            <Route path='/profile' element={<ProfileScreen />} />
-            <Route path='/product/:id' element={<ProductScreen />} />
-            <Route path='/shipping' element={<ShippingScreen />} />
-            <Route path='/payment' element={<PaymentScreen />} />
-            <Route path='/placeorder' element={<PlaceOrderScreen />} />
-            <Route path='/cart' element={<CartPage />} />
-            <Route path='/cart/:id/*' element={<CartPage />} />
-            {/* <Route path='/cart' element={<CartScreen />} />
-            <Route path='/cart/:id/*' element={<CartScreen />} /> */}
-            <Route path='/order/:id/*' element={<OrderScreen />} />
-          </Routes>
 
-        </Container>
+        <Routes >
+          <Route path='/' element={<HomeScreen />} exact />
+          <Route path='/login' element={<Login />} />
+          <Route path='/userlist' element={<UserList />} />
+          <Route path='/register' element={<Registration />} />
+          <Route path='/profile' element={<ProfileScreen />} />
+          <Route path='/product/:id' element={<ProductScreen />} />
+          <Route path='/shipping' element={<ShippingScreen />} />
+          <Route path='/payment' element={<PaymentScreen />} />
+          <Route path='/placeorder' element={<PlaceOrderScreen />} />
+          <Route path='/cart' element={<CartPage />} />
+          <Route path='/cart/:id/*' element={<CartPage />} />
+          {/* <Route path='/cart' element={<CartScreen />} />
+            <Route path='/cart/:id/*' element={<CartScreen />} /> */}
+          <Route path='/order/:id/*' element={<OrderScreen />} />
+        </Routes>
+
+
       </main>
       <Footer></Footer>
     </Router>

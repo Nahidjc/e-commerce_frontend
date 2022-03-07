@@ -24,6 +24,7 @@ export default function CartPage() {
     const cart = useSelector(state => state.cart);
     const { cartItems } = cart;
     cart.itemPrice = cart.cartItems.reduce((acc, item) => acc + item.price * item.qty, 0).toFixed(2)
+    const discountPrice = cart.itemPrice * 0.10
     cart.shippingPrice = (cart.itemPrice > 100 ? 0 : 10).toFixed(2)
     cart.taxPrice = Number((0.082) * cart.itemPrice).toFixed(2)
     cart.totalPrice = (Number(cart.itemPrice) + Number(cart.shippingPrice) + Number(cart.taxPrice)).toFixed(2)
@@ -97,7 +98,7 @@ export default function CartPage() {
                                     <span className="Price-value color-green">
                                         &nbsp;
                                         <i className="color-green"></i>
-                                        ${0}%
+                                        ${discountPrice.toFixed(2)}%
                                     </span>
                                 </div>
                                 <div className="Price-breakup-row">

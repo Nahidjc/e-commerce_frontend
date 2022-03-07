@@ -50,7 +50,7 @@ const PlaceOrderScreen = () => {
     }
     return (
 
-        <div>
+        <div className='container'>
             <CheckoutSteps step1 step2 step3 step4 />
             {loading ? <div className="d-flex justify-content-center align-items-center " style={{ height: '80vh' }}> <Bars color="#00BFFF" height={80} width={80} /></div> : <Row>
                 <Col md={8}>

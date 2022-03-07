@@ -6,6 +6,8 @@ import "./CartItemCard.css";
 export default function CartItemCard({ item }) {
     console.log(item);
     const dispatch = useDispatch()
+    const discountPrice = item.price * 0.10;
+    const previousPrice = Number(item.price) + Number(discountPrice);
 
     const addItemQty = () => {
         const itemQty = item.qty + 1;
@@ -38,9 +40,9 @@ export default function CartItemCard({ item }) {
                             </div>
                             <div>
                                 <span className="orignal-price">
-                                    ${item.price}
+                                    ${previousPrice}
                                 </span>
-                                <span className="discount-percent">0%</span>
+                                <span className="discount-percent">10%</span>
                             </div>
                         </div>
                     </div>

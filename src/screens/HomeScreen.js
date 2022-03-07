@@ -29,25 +29,23 @@ const HomeScreen = () => {
     }, [dispatch])
     return (
         <div>
-
+            <div className="row">
+                <div className="col-md-3">
+                    <FilterCategory />
+                </div>
+                <div className="col-md-9">
+                    <ProductCarosel />
+                </div>
+            </div>
             {loading ? <div className="d-flex justify-content-center align-items-center " style={{ height: '80vh' }}> <Bars color="#00BFFF" height={80} width={80} /></div>
                 : error ? <Message variant='danger'>{error}</Message>
                     :
                     <div className="mb-5">
-                        <div className="row">
-                            <div className="col-md-3">
-                                <FilterCategory />
-                            </div>
-                            <div className="col-md-9">
-                                <ProductCarosel />
-                            </div>
-                        </div>
+
 
                         <div className='row'>
-                            <div className="col-md-2">
 
-                            </div>
-                            <div className='col-md-10'>
+                            <div className='col-md-12'>
                                 <div className="row">
                                     {
                                         products.map(product => (

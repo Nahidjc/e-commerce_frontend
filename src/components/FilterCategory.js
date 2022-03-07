@@ -4,6 +4,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormHelperText from '@mui/material/FormHelperText';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import FilterSideBar from './FilterSidebar/FilterSidebar';
 
 export default function FilterCategory() {
     const [category, setCategory] = React.useState('');
@@ -37,6 +38,8 @@ export default function FilterCategory() {
 
                 </FormHelperText>
             </FormControl>
+
+            <FilterSideBar />
 
         </div>
     );

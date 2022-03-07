@@ -1,0 +1,45 @@
+.Sidebar {
+  position: absolute;
+  min-width: 250px;
+  transition: all 0.3s;
+  overflow: hidden;
+}
+.Sidebar-hidden {
+  min-width: 0%;
+  min-height: 0px;
+  font-size: 0;
+}
+.Filter-container {
+  width: 100%;
+  padding: 15px 0 10px 25px;
+  border-bottom: 1px solid #e9e9ed;
+  border-right: 1px solid #e9e9ed;
+}
+.Filter-header {
+  font-weight: 500;
+  text-transform: uppercase;
+  font-size: 14px;
+  margin: 0 0 18px;
+  color: #282c3f;
+}
+.Filter-list li {
+  list-style: none;
+}
+.Filter {
+  width: 95%;
+  cursor: pointer;
+  text-overflow: ellipsis;
+  min-height: 17px;
+  color: #535766;
+  line-height: 1;
+  font-size: 14px;
+  font-weight: 400;
+}
+.Filter-checkbox {
+  margin-right: 16px;
+}
+
+@media (max-width: 850px) {
+  .Sidebar {
+  }
+}

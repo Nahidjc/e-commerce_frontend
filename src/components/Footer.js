@@ -1,6 +1,6 @@
 import React from "react";
 import { Segment, Container, Grid, List, Header } from "semantic-ui-react";
-
+import './Footer.css';
 const Footer = () => (
     <Segment inverted vertical >
         <Container>
@@ -24,7 +24,7 @@ const Footer = () => (
                     </Grid.Column>
                     <Grid.Column width={4}>
                         <h4 inverted>Customer Care</h4>
-                        <div>
+                        <div >
                             <a href="#">Help Center</a><br />
                             <a href="#">How to Buy</a><br />
                             <a href="#">Track Your Order</a><br />

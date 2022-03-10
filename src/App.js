@@ -24,6 +24,7 @@ import UserList from "./components/UserList";
 import OrderScreen from "./screens/OrderScreen";
 import CartPage from "./components/CartPage/CartPage";
 import NavbarNew from "./components/Navbar/NavbarNew";
+import MyOrder from "./components/Order/MyOrder";
 
 function App() {
   return (
@@ -43,6 +44,7 @@ function App() {
           <Route path='/shipping' element={<ShippingScreen />} />
           <Route path='/payment' element={<PaymentScreen />} />
           <Route path='/placeorder' element={<PlaceOrderScreen />} />
+          <Route path='/myorder' element={<MyOrder />} />
           <Route path='/cart' element={<CartPage />} />
           <Route path='/cart/:id/*' element={<CartPage />} />
           {/* <Route path='/cart' element={<CartScreen />} />

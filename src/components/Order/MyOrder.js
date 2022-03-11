@@ -9,8 +9,11 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Container from '@mui/material/Container';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { getMyOrders } from '../../actions/orderActions';
+import Message from '../Message';
+import { Bars } from 'react-loader-spinner';
+import { Typography } from '@mui/material';
 
 
 const MyOrder = () => {
@@ -40,38 +43,59 @@ const MyOrder = () => {
 
     return (
         <Container>
+          {loading ? <div className="d-flex justify-content-center align-items-center " style={{ height: '80vh' }}> <Bars color="#00BFFF" height={80} width={80} /></div>
+                : error ? <Message variant='danger'>{error}</Message>
+                    :   
+                    <TableContainer component={Paper}>
+                      <h1 className='text-center'>My Orders</h1>
+                  <Table sx={{ minWidth: 650 }} className='text-center' aria-label="simple table">
+                    <TableHead>
+                      <TableRow>
+                      <TableCell>Order ID</TableCell>
+                        <TableCell>Date</TableCell>
+                        <TableCell >Total</TableCell>
+                        <TableCell >PAID</TableCell>
+                        <TableCell >DELIVERED</TableCell>
+                        <TableCell >DETAILS</TableCell>
+                        <TableCell ></TableCell>
+                      </TableRow>
+                    </TableHead>
+                    <TableBody>
+                      {orders.map((order) => (
+                        <TableRow
+                          key={order._id}
+                          sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                        >
+                          <TableCell component="th" scope="row">
+                            #{order._id}
+                          </TableCell>
+                          <TableCell component="th" scope="row">
+                          {Date(`${order.createdAt}`)}
+                          
+                          </TableCell>
+                          <TableCell >${order.totalPrice}</TableCell>
+                          <TableCell >
+                            
+                          {order.isPaid ? order.paidAt.substring(0, 10) : (
+                                                <i className='fas fa-times' style={{ color: 'red' }}></i>
+                                            )}
+                            </TableCell>
+                          <TableCell >
+                          {order.isDelivered ? order.deliveredAt.substring(0, 10) : (
+                                                <i className='fas fa-times' style={{ color: 'red' }}></i>
+                                            )}
+                            {order.isDelivered}</TableCell>
+                          <Link to={`/order/${order._id}`}>
+                          <TableCell >Details</TableCell>
+                          </Link>
+                          
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                </TableContainer> }
 
-        
-        <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
-        <TableHead>
-          <TableRow>
-          <TableCell>Order ID</TableCell>
-            <TableCell>Date</TableCell>
-            <TableCell align="right">Total</TableCell>
-            <TableCell align="right">PAID</TableCell>
-            <TableCell align="right">DELIVERED</TableCell>
-            <TableCell align="right">DETAILS</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {orders.map((order) => (
-            <TableRow
-              key={order._id}
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-            >
-              <TableCell component="th" scope="row">
-                {order.createdAt}
-              </TableCell>
-              <TableCell align="right">{order.totalPrice}</TableCell>
-              <TableCell align="right">{order.isPaid}</TableCell>
-              <TableCell align="right">{order.isDelivered}</TableCell>
-              <TableCell align="right">Details</TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+     
     </Container>
     );
 };

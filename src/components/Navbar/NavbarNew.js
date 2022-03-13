@@ -8,43 +8,44 @@ import { logout } from '../../actions/userActions'
 import CartButton from './CartButton'
 
 const NavbarNew = () => {
-    const cart = useSelector(state => state.cart);
-    const { cartItems } = cart;
-    const userLogin = useSelector(state => state.userLogin);
-    const dispatch = useDispatch()
-    const { userInfo } = userLogin
-    const logoutHandler = () => {
-        dispatch(logout())
-    }
-    return (
-        <NavContainer>
-            <div className='nav-center'>
-                <div className='nav-header'>
-                    <Link to='/'>
-                        <img src={logo} alt='comfy sloth' />
-                    </Link>
-                    <button type='button' className='nav-toggle' >
-                        <FaBars />
-                    </button>
-                </div>
-                <ul className='nav-links'>
+  const cart = useSelector(state => state.cart);
+  const { cartItems } = cart;
+  const userLogin = useSelector(state => state.userLogin);
+  const dispatch = useDispatch()
+  const { userInfo } = userLogin
+  const logoutHandler = () => {
+    dispatch(logout())
+  }
+  return (
+    <NavContainer>
+      <div className='nav-center'>
+        <div className='nav-header'>
+          <Link to='/'>
+            <img src={logo} alt='comfy sloth' />
+          </Link>
+          <button type='button' className='nav-toggle' >
+            <FaBars />
+          </button>
+        </div>
+        <ul className='nav-links'>
 
 
 
 
-                    <li>
-                        <Link to='/'>Home</Link>
-                        <Link to='/about'>About</Link>
-                        <Link to='/products'>Product</Link>
+          <li>
+            <Link to='/'>Home</Link>
+            <Link to='/about'>About</Link>
+            <Link to='/products'>Product</Link>
+            <Link to='/myorders'>My Order</Link>
 
-                    </li>
+          </li>
 
 
-                </ul>
-                <CartButton />
-            </div>
-        </NavContainer>
-    )
+        </ul>
+        <CartButton />
+      </div>
+    </NavContainer>
+  )
 }
 
 const NavContainer = styled.nav`

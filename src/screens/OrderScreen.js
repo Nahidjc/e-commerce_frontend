@@ -25,7 +25,7 @@ const OrderScreen = () => {
 
     const orderPay = useSelector(state => state.orderPay)
     const { loading: loadingPay, success: successPay } = orderPay
-    
+
     const addPayPalScript = () => {
         const script = document.createElement('script')
         script.type = 'text/javascript'
@@ -48,11 +48,11 @@ const OrderScreen = () => {
             navigate('/login')
         }
 
-        if (!order ||successPay|| order._id !== Number(orderId)) {
+        if (!order || successPay || order._id !== Number(orderId)) {
             dispatch({ type: ORDER_PAY_RESET })
 
             dispatch(getOrderDetails(orderId))
-        }else if (!order.isPaid) {
+        } else if (!order.isPaid) {
             if (!window.paypal) {
                 addPayPalScript()
             } else {
@@ -60,10 +60,10 @@ const OrderScreen = () => {
             }
         }
 
-    }, [dispatch, order, orderId,successPay])
+    }, [dispatch, order, orderId, successPay])
 
     const successPaymentHandler = (paymentResult) => {
-        console.log('paymentResult',paymentResult);
+        console.log('paymentResult', paymentResult);
         dispatch(payOrder(orderId, paymentResult))
     }
 
@@ -120,7 +120,7 @@ const OrderScreen = () => {
                                         <ListGroup.Item key={index}>
                                             <Row>
                                                 <Col md={1}>
-                                                    <Image src={item.image} alt={item.name} fluid rounded />
+                                                    <Image src={`http://127.0.0.1:8000${item.image}`} alt={item.name} fluid rounded />
                                                 </Col>
 
                                                 <Col>
@@ -144,19 +144,19 @@ const OrderScreen = () => {
                 <Col md={6}>
                     <OrderCalculation order={order} />
                     {!order.isPaid && (
-                                        <ListGroup.Item>
-                                            {loadingPay && <Loader />}
+                        <ListGroup.Item>
+                            {loadingPay && <Loader />}
 
-                                            {!sdkReady ? (
-                                                <Loader />
-                                            ) : (
-                                                    <PayPalButton
-                                                        amount={order.totalPrice}
-                                                        onSuccess={successPaymentHandler}
-                                                    />
-                                                )}
-                                        </ListGroup.Item>
-                                    )}
+                            {!sdkReady ? (
+                                <Loader />
+                            ) : (
+                                <PayPalButton
+                                    amount={order.totalPrice}
+                                    onSuccess={successPaymentHandler}
+                                />
+                            )}
+                        </ListGroup.Item>
+                    )}
                 </Col>
             </Row>
         </div>

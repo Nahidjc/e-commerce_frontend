@@ -141,14 +141,14 @@ p {
   padding: 5rem 0;
 }
 .section-center {
-  width: 90vw;
+  width: 80vw;
   margin: 0 auto;
   max-width: var(--max-width);
 }
 
 @media screen and (min-width: 992px) {
   .section-center {
-    width: 90vw;
+    width: 80vw;
   }
 }
 .text-center {

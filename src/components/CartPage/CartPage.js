@@ -49,7 +49,7 @@ export default function CartPage() {
 
 
     return (
-        <>
+        <div className="container">
             {cartItems.length === 0 ?
                 <div className="container-div">
                     <div>
@@ -146,6 +146,6 @@ export default function CartPage() {
                 </section>
             }
 
-        </>
+        </div>
     );
 }

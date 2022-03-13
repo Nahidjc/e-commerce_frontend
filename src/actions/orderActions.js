@@ -1,21 +1,22 @@
 import axios from "axios";
 import { CART_CLEAR_ITEMS } from "../constants/cartConstants";
-import { ORDER_CREATE_FAIL,
-     ORDER_CREATE_REQUEST,
-      ORDER_CREATE_SUCCESS,
-       ORDER_DETAILS_FAIL,
-        ORDER_DETAILS_REQUEST, 
-        ORDER_DETAILS_SUCCESS,
-        ORDER_PAY_REQUEST,
-        ORDER_PAY_SUCCESS,
-        ORDER_PAY_FAIL,
-        ORDER_PAY_RESET ,
-    
-        MY_ORDER_REQUEST,
-        MY_ORDER_SUCCESS,
-        MY_ORDER_FAIL,
-        MY_ORDER_RESET
-    } from "../constants/orderConstants";
+import {
+    ORDER_CREATE_FAIL,
+    ORDER_CREATE_REQUEST,
+    ORDER_CREATE_SUCCESS,
+    ORDER_DETAILS_FAIL,
+    ORDER_DETAILS_REQUEST,
+    ORDER_DETAILS_SUCCESS,
+    ORDER_PAY_REQUEST,
+    ORDER_PAY_SUCCESS,
+    ORDER_PAY_FAIL,
+    ORDER_PAY_RESET,
+
+    MY_ORDER_REQUEST,
+    MY_ORDER_SUCCESS,
+    MY_ORDER_FAIL,
+    MY_ORDER_RESET
+} from "../constants/orderConstants";
 
 
 
@@ -167,7 +168,7 @@ export const getMyOrders = () => async (dispatch, getState) => {
         }
 
         const { data } = await axios.get(
-            `http://127.0.0.1:8000/api/orders/myorders/`,
+            `http://127.0.0.1:8000/api/orders/my/orders/`,
             config
         )
 

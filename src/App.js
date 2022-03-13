@@ -1,7 +1,5 @@
-import { Container } from "react-bootstrap";
 import "./styles.css";
 import Footer from "./components/Footer";
-import Header from "./components/Header";
 import HomeScreen from "./screens/HomeScreen";
 import './App.css';
 import {
@@ -17,7 +15,6 @@ import ProfileScreen from "./screens/ProfileScreen";
 import ShippingScreen from "./screens/ShippingScreen";
 import PaymentScreen from "./screens/PaymentScreen";
 import PlaceOrderScreen from "./screens/PlaceOrderScreen";
-import Navbar from "./components/Navbar/Navbar";
 import Login from "./components/Authentication/Login";
 import Registration from "./components/Authentication/Registration";
 import UserList from "./components/UserList";
@@ -25,6 +22,8 @@ import OrderScreen from "./screens/OrderScreen";
 import CartPage from "./components/CartPage/CartPage";
 import NavbarNew from "./components/Navbar/NavbarNew";
 import MyOrder from "./components/Order/MyOrder";
+import AllProducts from "./components/AllProducts/AllProducts";
+import SingleProductPage from "./components/AllProducts/SingleProductPage";
 
 function App() {
   return (
@@ -40,11 +39,12 @@ function App() {
           <Route path='/userlist' element={<UserList />} />
           <Route path='/register' element={<Registration />} />
           <Route path='/profile' element={<ProfileScreen />} />
-          <Route path='/product/:id' element={<ProductScreen />} />
+          <Route path='/product/:id' element={<SingleProductPage />} />
           <Route path='/shipping' element={<ShippingScreen />} />
           <Route path='/payment' element={<PaymentScreen />} />
           <Route path='/placeorder' element={<PlaceOrderScreen />} />
-          <Route path='/myorder' element={<MyOrder />} />
+          <Route path='/myorders' element={<MyOrder />} />
+          <Route path='/allproducts' element={<AllProducts />} />
           <Route path='/cart' element={<CartPage />} />
           <Route path='/cart/:id/*' element={<CartPage />} />
           {/* <Route path='/cart' element={<CartScreen />} />

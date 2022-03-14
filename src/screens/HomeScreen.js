@@ -51,7 +51,7 @@ const HomeScreen = () => {
                             <div className='row'>
 
                                 <div className='col-md-12'>
-                                    <div className="row">
+                                    <div className="row ">
                                         {
                                             products.map(product => (
 

@@ -103,7 +103,7 @@ const OrderScreen = () => {
                                 {order.paymentMethod}
                             </p>
                             {order.isPaid ? (
-                                <Message variant='success'>Paid on{Date(`${order.paidAt}`)} </Message>
+                                <Message variant='success'>Paid on {Date(`${order.paidAt}`)} </Message>
                             ) : (
                                 <Message variant='warning'>Not Paid</Message>
                             )}
@@ -119,12 +119,12 @@ const OrderScreen = () => {
                                     {order.orderItems.map((item, index) => (
                                         <ListGroup.Item key={index}>
                                             <Row>
-                                                <Col md={1}>
+                                                <Col md={2}>
                                                     <Image src={`http://127.0.0.1:8000${item.image}`} alt={item.name} fluid rounded />
                                                 </Col>
 
                                                 <Col>
-                                                    <Link to={`/product/${item.product}`}>{item.name}</Link>
+                                                    <Link style={{ textDecoration: 'none', 'color': 'black' }} to={`/product/${item.product}`}>{item.name}</Link>
                                                 </Col>
 
                                                 <Col md={4}>

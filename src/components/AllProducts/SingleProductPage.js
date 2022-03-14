@@ -10,69 +10,73 @@ import PageHero from './PageHero'
 import ProductImages from './ProductImages'
 import Stars from './Stars'
 import AddToCart from '../AddToCart/AddToCart'
+import { Button } from 'react-bootstrap'
 const SingleProductPage = () => {
-    let params = useParams();
-    const dispatch = useDispatch();
-    const history = useNavigate();
-    const productDetails = useSelector(state => state.productDetails)
-    const { error, loading, product } = productDetails
-    console.log(product);
-    const [qty, setQty] = useState(1)
-    useEffect(() => {
-        dispatch(listProductDetails(params.id))
-    }, [])
-    const addToCartHandler = () => {
-        console.log('Add to Cart id is: ', params.id);
-        history(`/cart/${params.id}?qty=${qty}`)
-    }
-    return (
-        <div className="container">
+  let params = useParams();
+  const dispatch = useDispatch();
+  const history = useNavigate();
+  const productDetails = useSelector(state => state.productDetails)
+  const { error, loading, product } = productDetails
+  console.log(product);
+  const [qty, setQty] = useState(1)
+  useEffect(() => {
+    dispatch(listProductDetails(params.id))
+  }, [])
+  const addToCartHandler = () => {
+    console.log('Add to Cart id is: ', params.id);
+    history(`/cart/${params.id}?qty=${qty}`)
+  }
+  return (
+    <div className="container">
 
-            <Wrapper>
-                <div className=' section-center page'>
-                    <Link to='/' className='btn'>
-                        back to products
-                    </Link>
-                    <div className='section'>
-                        <div className="row">
-                            <div className="col-md-6">
-                                <img className='img-fluid' src={`http://127.0.0.1:8000${product.image}`} alt={product.name} />
-                            </div>
-                            <div className="col-md-6">
+      <Wrapper>
+        <div className=' section-center page'>
+          <Link to='/' className='btn'>
+            back to products
+          </Link>
+          <div className='section'>
+            <div className="row">
+              <div className="col-md-6">
+                <img className='img-fluid' src={`http://127.0.0.1:8000${product.image}`} alt={product.name} />
+              </div>
+              <div className="col-md-6">
 
-                                <section className='content'>
-                                    <h2>{product.name}</h2>
-                                    <Stars stars={Number(product.rating)} reviews={product.numReviews} />
-                                    <h5 className='price'>${product.price}</h5>
-                                    <p className='desc'>{product.description}</p>
-                                    <p className='info'>
-                                        <span>Available : </span>
-                                        {product.countInStock > 0 ? 'In stock' : 'out of stock'}
-                                    </p>
-                                    <p className='info'>
-                                        <span>Category :</span>
-                                        {product.category}
-                                    </p>
-                                    <p className='info'>
-                                        <span>Brand :</span>
-                                        {product.brand}
-                                    </p>
-                                    <hr />
-                                    {product.countInStock > 0 && <AddToCart item={product} />}
-                                </section>
-                            </div>
+                <section className='content'>
+                  <h2>{product.name}</h2>
+                  <Stars stars={Number(product.rating)} reviews={product.numReviews} />
+                  <h5 className='price'>${product.price}</h5>
+                  <p className='desc'>{product.description}</p>
+                  <p className='info'>
+                    <span>Available : </span>
+                    {product.countInStock > 0 ? 'In stock' : 'out of stock'}
+                  </p>
+                  <p className='info'>
+                    <span>Category :</span>
+                    {product.category}
+                  </p>
+                  <p className='info'>
+                    <span>Brand :</span>
+                    {product.brand}
+                  </p>
+                  <hr />
+                  {product.countInStock > 0 ? <AddToCart item={product} /> : <>
 
-                        </div>
+                    <Button color='danger'>Out of Stock</Button>
+                  </>}
+                </section>
+              </div>
+
+            </div>
 
 
-                    </div>
-                </div>
-
-            </Wrapper>
-
+          </div>
         </div>
 
-    )
+      </Wrapper>
+
+    </div>
+
+  )
 }
 
 const Wrapper = styled.main`

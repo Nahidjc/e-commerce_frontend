@@ -3,7 +3,6 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 // import Rating from './Rating';
 
-
 import './style.css'
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
@@ -12,7 +11,7 @@ import CardActions from "@mui/material/CardActions";
 
 import Typography from "@mui/material/Typography";
 
-import { Button } from '@mui/material';
+import { Button, Grid } from '@mui/material';
 import Rating from './Rating';
 
 // import Rating from 'react-rating';
@@ -55,13 +54,15 @@ const Product = ({ product }) => {
         //     </Card.Body>
         // </Card>
 
-        <div className="my-2 col-md-6 col-sm-6 col-xs-12 col-lg-3">
 
-            <Card sx={{ maxWidth: 240, maxHeight: 380 }}>
+        <div className="my-2 col-md-6 col-sm-6 col-xs-6 col-lg-3">
+
+            <Card sx={{ maxWidth: 260, height: 360 }}>
                 <CardMedia
                     component="img"
                     height="194"
                     width='200'
+
                     image={`http://127.0.0.1:8000${product.image}`}
                     alt={product.name}
                 />
@@ -87,20 +88,27 @@ const Product = ({ product }) => {
                 </CardActions>
 
                 <CardActions >
+                    <Grid
+                        container
+                        direction="row"
+                        justifyContent="space-between"
+                        alignItems="center"
+                    >
+                        <div className="mb-1 text-warning">
+                            ${product.price}
+                        </div>
+                        <div className="mb-1">
+                            {product.countInStock === 0 ? <div className='text-danger'> Out Of Stock</div> :
 
-                    <div className="mb-1 text-warning">
-                        ${product.price}
-                    </div>
-                    <div className="mb-1">
-                        {product.countInStock === 0 ? <div className='text-danger'> Out Of Stock</div> :
+                                <Button size="small" variant="outlined" onClick={addToCartHandler} disabled={product.countInStock === 0} type='button'>
+                                    Add to Cart
+                                </Button>
 
-                            <Button size="small" variant="outlined" onClick={addToCartHandler} disabled={product.countInStock === 0} type='button'>
-                                Add to Cart
-                            </Button>
+                            }
 
-                        }
+                        </div>
+                    </Grid>
 
-                    </div>
                 </CardActions>
             </Card>
         </div>

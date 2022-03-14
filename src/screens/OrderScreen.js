@@ -10,7 +10,8 @@ import { Bars } from 'react-loader-spinner';
 import Loader from '../components/Loader';
 import { PayPalButton } from 'react-paypal-button-v2'
 import { ORDER_PAY_RESET } from '../constants/orderConstants';
-
+import './OrderScreen.css'
+import dateFormat, { masks } from "dateformat";
 const OrderScreen = () => {
     let params = useParams();
     const orderId = params.id;
@@ -66,7 +67,7 @@ const OrderScreen = () => {
         console.log('paymentResult', paymentResult);
         dispatch(payOrder(orderId, paymentResult))
     }
-
+    const options = { weekday: 'long', year: 'numeric', month: 'short', day: 'numeric' };
     return loading ? (
         <div className="d-flex justify-content-center align-items-center " style={{ height: '80vh' }}> <Bars color="#00BFFF" height={80} width={80} /></div>
     ) : error ? (
@@ -96,6 +97,36 @@ const OrderScreen = () => {
                             )}
                         </ListGroup.Item>
 
+                        <ListGroup.Item>
+                            <h2>Order Tracking</h2>
+                            <div >
+                                <div className="row">
+                                    <div className="col-12 col-md-12 hh-grayBox pt45 pb20">
+                                        <div className="row justify-content-between">
+                                            <div className="order-tracking completed">
+                                                <span className="is-complete"></span>
+                                                <p>Order Processing</p>
+                                                <span>{dateFormat(order.createdAt, "fullDate")}
+
+
+                                                </span>
+                                            </div>
+                                            <div className={`order-tracking ${order.isPaid ? 'completed' : ''}`}>
+                                                <span className="is-complete"></span>
+                                                <p>Paid</p>
+                                                <span>{order.isPaid && dateFormat(order.paidAt, "fullDate")}</span>
+                                            </div>
+                                            <div className={`order-tracking ${order.isDelivered ? 'completed' : ''}`}>
+                                                <span className="is-complete"></span>
+                                                <p>Delivered</p>
+                                                <span>{order.isDelivered && dateFormat(order.deliveredAt, "fullDate")} </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </ListGroup.Item>
                         <ListGroup.Item>
                             <h2>Payment Method</h2>
                             <p>

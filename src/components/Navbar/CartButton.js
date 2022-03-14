@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { logout } from "../../actions/userActions";
+import { MY_ORDER_RESET } from "../../constants/orderConstants";
 
 const CartButton = () => {
   const cart = useSelector(state => state.cart);
@@ -13,6 +14,7 @@ const CartButton = () => {
   const { userInfo } = userLogin
   const logoutHandler = () => {
     dispatch(logout())
+    dispatch({ 'type': MY_ORDER_RESET })
   }
   return (
     <Wrapper className="cart-btn-wrapper">

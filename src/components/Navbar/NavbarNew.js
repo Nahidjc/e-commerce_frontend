@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { logout } from '../../actions/userActions'
 import CartButton from './CartButton'
+import { MY_ORDER_RESET } from '../../constants/orderConstants'
 
 const NavbarNew = () => {
   const cart = useSelector(state => state.cart);
@@ -15,6 +16,7 @@ const NavbarNew = () => {
   const { userInfo } = userLogin
   const logoutHandler = () => {
     dispatch(logout())
+    dispatch({ 'type': MY_ORDER_RESET })
   }
   return (
     <NavContainer>

@@ -98,7 +98,7 @@ const MyOrder = () => {
 
             <thead>
 
-              <tr>
+              <tr className='text-center'>
                 <th>Order ID</th>
                 <th>Date</th>
                 <th>Total Taka</th>
@@ -110,7 +110,7 @@ const MyOrder = () => {
             </thead>
             <tbody>
               {orders.map((order) => (
-                <tr key={order._id} class={`${order.isPaid ? 'positive' : 'negative'}`}>
+                <tr key={order._id} className={`text-center ${order.isPaid ? 'positive' : 'negative'}`}>
                   <td>#{order._id}</td>
                   <td>{order.createdAt.substring(0, 10)}</td>
                   <td>${order.totalPrice}</td>

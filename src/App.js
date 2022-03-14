@@ -24,6 +24,7 @@ import NavbarNew from "./components/Navbar/NavbarNew";
 import MyOrder from "./components/Order/MyOrder";
 import AllProducts from "./components/AllProducts/AllProducts";
 import SingleProductPage from "./components/AllProducts/SingleProductPage";
+import Dashboard from "./components/AdminPage/Dashboard";
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
         <Routes >
           <Route path='/' element={<HomeScreen />} exact />
           <Route path='/login' element={<Login />} />
+          <Route path='/dashboard' element={<Dashboard />} />
           <Route path='/userlist' element={<UserList />} />
           <Route path='/register' element={<Registration />} />
           <Route path='/profile' element={<ProfileScreen />} />

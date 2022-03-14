@@ -13,7 +13,11 @@ import {
     MY_ORDER_REQUEST,
     MY_ORDER_SUCCESS,
     MY_ORDER_FAIL,
-    MY_ORDER_RESET
+    MY_ORDER_RESET,
+    TOTAL_ORDER_REQUEST,
+    TOTAL_ORDER_SUCCESS,
+    TOTAL_ORDER_FAIL,
+    TOTAL_ORDER_RESET
 } from "../constants/orderConstants";
 
 
@@ -102,7 +106,7 @@ export const orderPayReducer = (state = {}, action) => {
 
 
 
-export const getMyOrderList = (state = {orders:[]}, action) => {
+export const getMyOrderList = (state = { orders: [] }, action) => {
     switch (action.type) {
         case MY_ORDER_REQUEST:
             return {
@@ -112,7 +116,7 @@ export const getMyOrderList = (state = {orders:[]}, action) => {
         case MY_ORDER_SUCCESS:
             return {
                 loading: false,
-                orders:action.payload
+                orders: action.payload
             }
 
         case MY_ORDER_FAIL:
@@ -123,7 +127,35 @@ export const getMyOrderList = (state = {orders:[]}, action) => {
 
         case MY_ORDER_RESET:
             return {
-                orders:[]
+                orders: []
+            }
+
+        default:
+            return state
+    }
+}
+export const TotalOrderList = (state = { orders: [] }, action) => {
+    switch (action.type) {
+        case TOTAL_ORDER_REQUEST:
+            return {
+                loading: true
+            }
+
+        case TOTAL_ORDER_SUCCESS:
+            return {
+                loading: false,
+                orders: action.payload
+            }
+
+        case TOTAL_ORDER_FAIL:
+            return {
+                loading: false,
+                error: action.payload
+            }
+
+        case TOTAL_ORDER_RESET:
+            return {
+                orders: []
             }
 
         default:

@@ -114,7 +114,7 @@ function DashboardContent() {
                     }}
                 >
                     <Toolbar />
-                    <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
+                    <Container maxWidth="lg" sx={{ mt: 1, mb: 4 }}>
                         <Grid container spacing={3}>
                             {/* Chart */}
                             <Grid item xs={12} md={8} lg={9}>

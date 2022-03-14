@@ -6,6 +6,11 @@ import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Title from './Title';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { getTotalOrders } from '../../actions/orderActions';
+import Message from '../Message';
+import { Bars } from 'react-loader-spinner';
 
 // Generate Order Data
 function createData(id, date, name, shipTo, paymentMethod, amount) {
@@ -53,31 +58,66 @@ function preventDefault(event) {
 }
 
 export default function Orders() {
+
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+
+    const totalOrderList = useSelector(state => state.totalOrderList)
+    const { loading, error, orders } = totalOrderList
+
+    const userLogin = useSelector(state => state.userLogin)
+    const { userInfo } = userLogin
+
+
+
+    React.useEffect(() => {
+        console.log(orders);
+        if (userInfo) {
+            dispatch(getTotalOrders())
+        } else {
+            navigate('/login')
+        }
+
+    }, [dispatch, navigate, userInfo])
     return (
         <React.Fragment>
             <Title>Recent Orders</Title>
-            <Table size="small">
-                <TableHead>
-                    <TableRow>
-                        <TableCell>Date</TableCell>
-                        <TableCell>Name</TableCell>
-                        <TableCell>Ship To</TableCell>
-                        <TableCell>Payment Method</TableCell>
-                        <TableCell align="right">Sale Amount</TableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {rows.map((row) => (
-                        <TableRow key={row.id}>
-                            <TableCell>{row.date}</TableCell>
-                            <TableCell>{row.name}</TableCell>
-                            <TableCell>{row.shipTo}</TableCell>
-                            <TableCell>{row.paymentMethod}</TableCell>
-                            <TableCell align="right">{`$${row.amount}`}</TableCell>
-                        </TableRow>
-                    ))}
-                </TableBody>
-            </Table>
+            {loading ? <div className="d-flex justify-content-center align-items-center " style={{ height: '80vh' }}> <Bars color="#00BFFF" height={80} width={80} /></div>
+                : error ? <Message variant='danger'>{error}</Message>
+                    : <>
+                        <Table size="small">
+                            <TableHead>
+                                <TableRow>
+                                    <TableCell className='text-center'>Order Id</TableCell>
+                                    <TableCell className='text-center'>Date</TableCell>
+                                    <TableCell className='text-center'>Name</TableCell>
+                                    <TableCell className='text-center'>Paid On</TableCell>
+                                    <TableCell className='text-center'>Ship To</TableCell>
+                                    <TableCell className='text-center'>Payment Method</TableCell>
+                                    <TableCell className='text-center'>Sale Amount</TableCell>
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
+                                {orders.map((row) => (
+                                    <TableRow key={row._id}>
+                                        <TableCell className='text-center'>#{row._id}</TableCell>
+                                        <TableCell className='text-center'>{row.createdAt.substring(0, 10)}</TableCell>
+                                        <TableCell className='text-center'>{row.user.name}</TableCell>
+
+                                        <TableCell className='text-center'> {row.isPaid ? <><i class="icon checkmark" style={{ color: 'green' }}></i> Paid</> : <>
+                                            <i className='fas fa-times' style={{ color: 'red' }}></i>
+                                        </>}</TableCell>
+                                        <TableCell className='text-center'> {row.isDelivered ? <><i className="fas fa-shipping-fast"></i> Delivered</> : <>
+                                            <i className='fas fa-times' style={{ color: 'red' }}></i>
+                                        </>}</TableCell>
+                                        <TableCell className='text-center'>{row.paymentMethod}</TableCell>
+                                        <TableCell className='text-center'>{`$${row.totalPrice}`}</TableCell>
+                                    </TableRow>
+                                ))}
+                            </TableBody>
+                        </Table>
+                    </>}
+
             <Link color="primary" href="#" onClick={preventDefault} sx={{ mt: 3 }}>
                 See more orders
             </Link>

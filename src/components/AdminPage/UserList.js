@@ -130,7 +130,7 @@ const UserList = () => {
                     }}
                 >
                     <Toolbar />
-                    <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
+                    <Container maxWidth="lg" sx={{ mb: 4 }}>
 
                         {loading ? <div className="d-flex justify-content-center align-items-center " style={{ height: '80vh' }}> <Bars color="#00BFFF" height={80} width={80} /></div>
                             : error ? <Message variant='danger'>{error}</Message>

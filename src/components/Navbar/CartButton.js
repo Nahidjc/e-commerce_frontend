@@ -1,7 +1,7 @@
 import React from "react";
 import { FaShoppingCart, FaUserMinus, FaUserPlus } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { logout } from "../../actions/userActions";
 import { MY_ORDER_RESET } from "../../constants/orderConstants";
@@ -9,31 +9,41 @@ import { MY_ORDER_RESET } from "../../constants/orderConstants";
 const CartButton = () => {
   const cart = useSelector(state => state.cart);
   const { cartItems } = cart;
+  const navigate = useNavigate()
   const userLogin = useSelector(state => state.userLogin);
   const dispatch = useDispatch()
   const { userInfo } = userLogin
   const logoutHandler = () => {
     dispatch(logout())
     dispatch({ 'type': MY_ORDER_RESET })
+    navigate('/')
   }
   return (
     <Wrapper className="cart-btn-wrapper">
-      <Link to="/cart" className="cart-btn" >
-        Cart
-        <span className="cart-container">
-          <FaShoppingCart />
-          <span className="cart-value">{cartItems.length}</span>
-        </span>
-      </Link>
-      {userInfo ? (
-        <button
-          type="button"
-          className="auth-btn"
-          onClick={logoutHandler}
+      {userInfo && userInfo.isAdmin ? <></> :
+        <Link to="/cart" className="cart-btn" >
+          Cart
+          <span className="cart-container">
+            <FaShoppingCart />
+            <span className="cart-value">{cartItems.length}</span>
+          </span>
+        </Link>
+      }
 
-        >
-          Logout <FaUserMinus />
-        </button>
+      {userInfo ? (
+        <>
+          {userInfo && userInfo.isAdmin && <span>{userInfo.name}</span>}
+          <button
+            type="button"
+            className="auth-btn"
+            onClick={logoutHandler}
+
+          >
+            Logout < FaUserMinus />
+          </button>
+        </>
+
+
       ) : (
         <>
           <Link to="/login" className="auth-btn" >
@@ -43,7 +53,7 @@ const CartButton = () => {
         </>
 
       )}
-    </Wrapper>
+    </Wrapper >
   );
 };
 

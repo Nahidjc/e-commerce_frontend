@@ -17,7 +17,6 @@ import PaymentScreen from "./screens/PaymentScreen";
 import PlaceOrderScreen from "./screens/PlaceOrderScreen";
 import Login from "./components/Authentication/Login";
 import Registration from "./components/Authentication/Registration";
-import UserList from "./components/UserList";
 import OrderScreen from "./screens/OrderScreen";
 import CartPage from "./components/CartPage/CartPage";
 import NavbarNew from "./components/Navbar/NavbarNew";
@@ -25,6 +24,7 @@ import MyOrder from "./components/Order/MyOrder";
 import AllProducts from "./components/AllProducts/AllProducts";
 import SingleProductPage from "./components/AllProducts/SingleProductPage";
 import Dashboard from "./components/AdminPage/Dashboard";
+import UserList from "./components/AdminPage/UserList";
 
 function App() {
   return (
@@ -39,6 +39,7 @@ function App() {
           <Route path='/login' element={<Login />} />
           <Route path='/dashboard' element={<Dashboard />} />
           <Route path='/userlist' element={<UserList />} />
+
           <Route path='/register' element={<Registration />} />
           <Route path='/profile' element={<ProfileScreen />} />
           <Route path='/product/:id' element={<SingleProductPage />} />

@@ -29,21 +29,36 @@ const NavbarNew = () => {
             <FaBars />
           </button>
         </div>
-        <ul className='nav-links'>
+
+
+        {userInfo && userInfo.isAdmin ?
+          <ul className='nav-links'>
+            <li>
+              <Link to='/dashboard'>Dashboard</Link>
+              <Link to='/Users'>Users</Link>
+              <Link to='/addproduct'>Add Product</Link>
+
+            </li>
+          </ul>
+          :
+          <ul className='nav-links'>
+            <li>
+              <Link to='/'>Home</Link>
+              <Link to='/about'>About</Link>
+              <Link to='/allproducts'>Products</Link>
+              <Link to='/myorders'>My Order</Link>
+
+            </li>
+
+          </ul>
+        }
 
 
 
 
-          <li>
-            <Link to='/'>Home</Link>
-            <Link to='/about'>About</Link>
-            <Link to='/allproducts'>Products</Link>
-            <Link to='/myorders'>My Order</Link>
-
-          </li>
 
 
-        </ul>
+
         <CartButton />
       </div>
     </NavContainer>

@@ -25,6 +25,7 @@ import AllProducts from "./components/AllProducts/AllProducts";
 import SingleProductPage from "./components/AllProducts/SingleProductPage";
 import Dashboard from "./components/AdminPage/Dashboard";
 import UserList from "./components/AdminPage/UserList";
+import UserUpdate from "./components/AdminPage/UserUpdate";
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
           <Route path='/login' element={<Login />} />
           <Route path='/dashboard' element={<Dashboard />} />
           <Route path='/userlist' element={<UserList />} />
+          <Route path='/admin/user/:id/edit' element={<UserUpdate />} />
 
           <Route path='/register' element={<Registration />} />
           <Route path='/profile' element={<ProfileScreen />} />

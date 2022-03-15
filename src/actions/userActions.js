@@ -22,6 +22,9 @@ import {
     USER_LIST_REQUEST,
     USER_LIST_SUCCESS,
     USER_LIST_FAIL,
+    USER_UPDATE_REQUEST,
+    USER_UPDATE_SUCCESS,
+    USER_UPDATE_FAIL,
 } from "../constants/userConstants"
 
 export const login = (email, password) => async (dispatch) => {
@@ -128,9 +131,6 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
             type: USER_DETAILS_SUCCESS,
             payload: data
         })
-
-        // localStorage.setItem('userInfo', JSON.stringify(data))
-
     } catch (error) {
         dispatch({
             type: USER_DETAILS_FAIL,
@@ -213,6 +213,46 @@ export const getUserList = () => async (dispatch, getState) => {
     } catch (error) {
         dispatch({
             type: USER_LIST_FAIL,
+            payload: error.response && error.response.data.detail
+                ? error.response.data.detail
+                : error.message
+
+        })
+    }
+}
+
+export const getUserUpdate = (user) => async (dispatch, getState) => {
+    console.log(user);
+
+    try {
+        dispatch({
+            type: USER_UPDATE_REQUEST
+        })
+
+        const { userLogin: { userInfo } } = getState()
+        const config = {
+            headers: {
+                'Content-type': 'application/json',
+                Authorization: `Bearer ${userInfo.token}`
+            }
+        }
+        const { data } = await axios.put(
+            `http://127.0.0.1:8000/api/users/update/${user.id}/`,
+            user,
+            config
+        )
+        dispatch({
+            type: USER_UPDATE_SUCCESS,
+            payload: data
+        })
+        dispatch({
+            type: USER_DETAILS_SUCCESS,
+            payload: data
+        })
+
+    } catch (error) {
+        dispatch({
+            type: USER_UPDATE_FAIL,
             payload: error.response && error.response.data.detail
                 ? error.response.data.detail
                 : error.message

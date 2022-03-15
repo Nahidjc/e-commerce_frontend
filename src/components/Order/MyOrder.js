@@ -120,7 +120,7 @@ const MyOrder = () => {
                     )}
                   </td>
                   <td>
-                    {order.isDelivered ? order.deliveredAt.substring(0, 10) : (
+                    {order.isDelivered ? <i className="fas fa-shipping-fast"></i> : (
                       <i className='fas fa-times' style={{ color: 'red' }}></i>
                     )}
                   </td>

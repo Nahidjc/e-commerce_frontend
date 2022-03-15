@@ -2,33 +2,35 @@ import React from "react";
 import { Segment, Container, Grid, List, Header } from "semantic-ui-react";
 import './Footer.css';
 const Footer = () => (
+
+
     <Segment inverted vertical >
         <Container>
             <Grid divided inverted stackable>
                 <Grid.Row>
                     <Grid.Column width={3}>
                         <h3> About </h3>
-                        <List link inverted>
-                            <List.Item as="a">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, praesentium.</List.Item>
+                        <List >
+                            <List.Item >Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, praesentium.</List.Item>
                         </List>
                     </Grid.Column>
                     <Grid.Column width={5}>
                         <h4 inverted>About Us</h4>
                         <div>
-                            <a href="#">Careers</a><br />
-                            <a href="#">Our Stores</a><br />
-                            <a href="#">Terms & Conditions</a><br />
-                            <a href="#">Privacy Policy</a>
+                            <span>Careers</span><br />
+                            <span>Our Stores</span><br />
+                            <span>Terms & Conditions</span><br />
+                            <span>Privacy Policy</span>
 
                         </div>
                     </Grid.Column>
                     <Grid.Column width={4}>
                         <h4 inverted>Customer Care</h4>
                         <div >
-                            <a href="#">Help Center</a><br />
-                            <a href="#">How to Buy</a><br />
-                            <a href="#">Track Your Order</a><br />
-                            <a href="#">Corporate & Bulk Purchasing</a>
+                            <span>Help Center</span><br />
+                            <span>How to Buy</span><br />
+                            <span>Track Your Order</span><br />
+                            <span>Corporate & Bulk Purchasing</span>
 
                         </div>
                     </Grid.Column>
@@ -49,6 +51,8 @@ const Footer = () => (
             </Grid.Column>
         </Container>
     </Segment>
+
+
 );
 
 

@@ -27,6 +27,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { getUserDetails, getUserUpdate } from "../../actions/userActions";
 import Message from "../Message";
 import { Bars } from "react-loader-spinner";
+import { USER_UPDATE_RESET } from "../../constants/userConstants";
 
 // import { Button, Col, Container, Form, Row } from 'react-bootstrap';
 
@@ -92,23 +93,29 @@ const UserUpdate = () => {
 
 
     useEffect(() => {
-        if (userInfo && userInfo.isAdmin) {
-            if (!user.name || user._id !== Number(userId)) {
-                dispatch(getUserDetails(userId))
-            } else {
-                console.log(user);
-                setName(user.name)
-                setEmail(user.email)
-                setUsername(user.username)
-                setIsAdmin(user.isAdmin)
-            }
+        if (success) {
+            dispatch({ 'type': USER_UPDATE_RESET })
+            history('/userlist')
         } else {
+            if (userInfo && userInfo.isAdmin) {
+                if (!user.name || user._id !== Number(userId)) {
+                    dispatch(getUserDetails(userId))
+                } else {
+                    console.log(user);
+                    setName(user.name)
+                    setEmail(user.email)
+                    setUsername(user.username)
+                    setIsAdmin(user.isAdmin)
+                }
+            } else {
 
-            history('/login')
+                history('/login')
+            }
+
         }
 
 
-    }, [user, userId, history, success])
+    }, [user, userId, history])
 
 
     const handleSubmit = (event) => {
@@ -121,7 +128,7 @@ const UserUpdate = () => {
             isAdmin
         }
         dispatch(getUserUpdate(user))
-        history('/userlist')
+
 
     };
 

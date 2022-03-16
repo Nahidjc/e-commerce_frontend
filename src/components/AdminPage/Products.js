@@ -5,15 +5,13 @@ import MuiDrawer from '@mui/material/Drawer';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import List from '@mui/material/List';
-
+import SendIcon from '@mui/icons-material/Send';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
-
+import AddIcon from '@mui/icons-material/Add';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
-import Paper from '@mui/material/Paper';
-import Link from '@mui/material/Link';
-import MenuIcon from '@mui/icons-material/Menu';
+
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import { mainListItems, secondaryListItems } from './listItems';
 
@@ -22,9 +20,10 @@ import { useNavigate } from "react-router-dom";
 import { getUserList } from "../../actions/userActions";
 import Message from "../Message";
 import { Bars } from "react-loader-spinner";
-import UserListTable from "./UserListTable";
 import ProductList from "./ProductList";
 import { listProducts } from "../../actions/productActions";
+import { Typography } from "@material-ui/core";
+import { Button } from "@mui/material";
 
 
 
@@ -133,7 +132,20 @@ const Products = () => {
                 >
                     <Toolbar />
                     <Container maxWidth="lg" sx={{ mb: 4 }}>
-
+                        <Grid
+                            sx={{ mb: 4 }}
+                            container
+                            direction="row"
+                            justifyContent="space-between"
+                            alignItems="center"
+                        >
+                            <Typography variant="h3" component="h2">
+                                Products
+                            </Typography>
+                            <Button variant="contained" startIcon={<AddIcon />}>
+                                Add Product
+                            </Button>
+                        </Grid>
                         {loading ? <div className="d-flex justify-content-center align-items-center " style={{ height: '80vh' }}> <Bars color="#00BFFF" height={80} width={80} /></div>
                             : error ? <Message variant='danger'>{error}</Message>
                                 : <>

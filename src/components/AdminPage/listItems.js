@@ -10,6 +10,7 @@ import BarChartIcon from '@mui/icons-material/BarChart';
 import LayersIcon from '@mui/icons-material/Layers';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import { Link } from 'react-router-dom';
+import ClassIcon from '@mui/icons-material/Class';
 import './style.css'
 export const mainListItems = (
     <React.Fragment>
@@ -33,7 +34,7 @@ export const mainListItems = (
         <Link to='/admin/productlist'>
             <ListItemButton>
                 <ListItemIcon>
-                    <PeopleIcon />
+                    <ClassIcon />
                 </ListItemIcon>
                 <ListItemText primary="Products" />
             </ListItemButton>

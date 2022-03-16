@@ -11,6 +11,8 @@ import { useNavigate } from 'react-router-dom';
 import { getTotalOrders } from '../../actions/orderActions';
 import Message from '../Message';
 import { Bars } from 'react-loader-spinner';
+import { LinkContainer } from 'react-router-bootstrap';
+import { Button } from 'react-bootstrap';
 
 // Generate Order Data
 function createData(id, date, name, shipTo, paymentMethod, amount) {
@@ -81,7 +83,7 @@ export default function Orders() {
     }, [dispatch, navigate, userInfo])
     return (
         <React.Fragment>
-            <Title>Recent Orders</Title>
+
             {loading ? <div className="d-flex justify-content-center align-items-center " style={{ height: '80vh' }}> <Bars color="#00BFFF" height={80} width={80} /></div>
                 : error ? <Message variant='danger'>{error}</Message>
                     : <>
@@ -95,6 +97,7 @@ export default function Orders() {
                                     <TableCell className='text-center'>Ship To</TableCell>
                                     <TableCell className='text-center'>Payment Method</TableCell>
                                     <TableCell className='text-center'>Sale Amount</TableCell>
+                                    <TableCell className='text-center'>Actions</TableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody>
@@ -112,15 +115,24 @@ export default function Orders() {
                                         </>}</TableCell>
                                         <TableCell className='text-center'>{row.paymentMethod}</TableCell>
                                         <TableCell className='text-center'>{`$${row.totalPrice}`}</TableCell>
+                                        <TableCell align="center">
+                                            <LinkContainer to={`/admin/order/${row._id}/edit`}>
+                                                <Button variant='light' style={{ backgroundColor: '#c4b5b9' }} className='btn-sm'>
+                                                    <i className='fas fa-edit'></i>
+                                                </Button>
+                                            </LinkContainer>
+
+                                            <Button variant='danger' style={{ backgroundColor: '#c90641' }} className='btn-sm' >
+                                                <i className='fas fa-trash'></i>
+                                            </Button>
+                                        </TableCell>
                                     </TableRow>
                                 ))}
                             </TableBody>
                         </Table>
                     </>}
 
-            <Link color="primary" href="#" onClick={preventDefault} sx={{ mt: 3 }}>
-                See more orders
-            </Link>
+
         </React.Fragment>
     );
 }

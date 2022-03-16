@@ -7,10 +7,7 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
-import ProductScreen from "./screens/ProductScreen";
-import CartScreen from "./screens/CartScreen";
-import LoginScreen from "./screens/LoginScreen";
-import RegisterScreen from "./screens/RegisterScreen";
+
 import ProfileScreen from "./screens/ProfileScreen";
 import ShippingScreen from "./screens/ShippingScreen";
 import PaymentScreen from "./screens/PaymentScreen";
@@ -26,6 +23,8 @@ import SingleProductPage from "./components/AllProducts/SingleProductPage";
 import Dashboard from "./components/AdminPage/Dashboard";
 import UserList from "./components/AdminPage/UserList";
 import UserUpdate from "./components/AdminPage/UserUpdate";
+import Products from "./components/AdminPage/Products";
+import OrderList from "./components/AdminPage/OrderList";
 
 function App() {
   return (
@@ -40,6 +39,8 @@ function App() {
           <Route path='/login' element={<Login />} />
           <Route path='/dashboard' element={<Dashboard />} />
           <Route path='/userlist' element={<UserList />} />
+          <Route path='/admin/productlist' element={<Products />} />
+          <Route path='/admin/orderlist' element={<OrderList />} />
           <Route path='/admin/user/:id/edit' element={<UserUpdate />} />
 
           <Route path='/register' element={<Registration />} />

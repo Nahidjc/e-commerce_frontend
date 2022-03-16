@@ -10,7 +10,8 @@ import { LinkContainer } from 'react-router-bootstrap';
 import { Button } from 'react-bootstrap';
 
 
-const ProductList = ({ products }) => {
+const ProductList = ({ products, handleDeleteProduct }) => {
+
     return (
         <TableContainer component={Paper}>
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -51,7 +52,7 @@ const ProductList = ({ products }) => {
                                     </Button>
                                 </LinkContainer>
 
-                                <Button variant='danger' style={{ backgroundColor: '#c90641' }} className='btn-sm' >
+                                <Button onClick={() => handleDeleteProduct(product._id)} variant='danger' style={{ backgroundColor: '#c90641' }} className='btn-sm' >
                                     <i className='fas fa-trash'></i>
                                 </Button>
                             </TableCell>

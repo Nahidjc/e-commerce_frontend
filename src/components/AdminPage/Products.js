@@ -21,11 +21,12 @@ import { getUserList } from "../../actions/userActions";
 import Message from "../Message";
 import { Bars } from "react-loader-spinner";
 import ProductList from "./ProductList";
-import { listProducts } from "../../actions/productActions";
+import { getDeleteProduct, listProducts } from "../../actions/productActions";
 import { Typography } from "@material-ui/core";
 import { Button } from "@mui/material";
-
-
+import { confirmAlert } from "react-confirm-alert";
+import "react-confirm-alert/src/react-confirm-alert.css";
+import { ToastContainer, toast } from 'react-toastify';
 
 
 const drawerWidth = 240;
@@ -71,7 +72,25 @@ const Products = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
+    const deleteProduct = useSelector(state => state.deleteProduct)
+    const { error: deleteError, loading: deleteLoading, message, deleteSuccess } = deleteProduct
 
+    const handleDeleteProduct = (id) => {
+        confirmAlert({
+            title: "Delete Product",
+            message: "Are you sure to delete the product",
+            buttons: [
+                {
+                    label: "Yes",
+                    onClick: () => dispatch(getDeleteProduct(id))
+                },
+                {
+                    label: "No"
+                    // onClick: () => alert("Click No")
+                }
+            ]
+        })
+    }
 
     const productList = useSelector(state => state.productList)
     const { error, loading, products } = productList
@@ -90,8 +109,11 @@ const Products = () => {
         } else {
             navigate('/login')
         }
+        if (deleteSuccess) {
+            toast.success(message);
+        }
 
-    }, [dispatch, navigate, userInfo])
+    }, [dispatch, navigate, userInfo, deleteSuccess])
 
     return (
         <ThemeProvider theme={mdTheme}>
@@ -146,15 +168,20 @@ const Products = () => {
                                 Add Product
                             </Button>
                         </Grid>
+                        <ToastContainer />
+                        {deleteError && <Message variant='danger'>{deleteError}</Message>}
+                        {deleteLoading && <div className="d-flex justify-content-center align-items-center " style={{ height: '80vh' }}> <Bars color="#00BFFF" height={80} width={80} /></div>}
+
+
                         {loading ? <div className="d-flex justify-content-center align-items-center " style={{ height: '80vh' }}> <Bars color="#00BFFF" height={80} width={80} /></div>
                             : error ? <Message variant='danger'>{error}</Message>
                                 : <>
-                                    <ProductList products={products} />
+                                    <ProductList handleDeleteProduct={handleDeleteProduct} products={products} />
                                 </>}
                     </Container>
                 </Box>
             </Box>
-        </ThemeProvider>
+        </ThemeProvider >
     );
 }
 

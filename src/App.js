@@ -25,7 +25,7 @@ import UserList from "./components/AdminPage/UserList";
 import UserUpdate from "./components/AdminPage/UserUpdate";
 import Products from "./components/AdminPage/Products";
 import OrderList from "./components/AdminPage/OrderList";
-
+import { ConfirmProvider } from "material-ui-confirm";
 function App() {
   return (
     <Router>
@@ -35,11 +35,14 @@ function App() {
       <main className="py-3">
 
         <Routes >
+
+          <Route path='/admin/productlist' element={<Products />} />
+
           <Route path='/' element={<HomeScreen />} exact />
           <Route path='/login' element={<Login />} />
           <Route path='/dashboard' element={<Dashboard />} />
           <Route path='/userlist' element={<UserList />} />
-          <Route path='/admin/productlist' element={<Products />} />
+
           <Route path='/admin/orderlist' element={<OrderList />} />
           <Route path='/admin/user/:id/edit' element={<UserUpdate />} />
 

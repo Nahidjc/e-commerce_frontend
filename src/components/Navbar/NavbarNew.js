@@ -36,7 +36,7 @@ const NavbarNew = () => {
             <li>
               <Link to='/dashboard'>Dashboard</Link>
               <Link to='/Users'>Users</Link>
-              <Link to='/addproduct'>Add Product</Link>
+              <Link to='/admin/addproduct'>Add Product</Link>
 
             </li>
           </ul>

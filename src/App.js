@@ -26,6 +26,7 @@ import UserUpdate from "./components/AdminPage/UserUpdate";
 import Products from "./components/AdminPage/Products";
 import OrderList from "./components/AdminPage/OrderList";
 import { ConfirmProvider } from "material-ui-confirm";
+import AddProduct from "./components/AdminPage/AddProduct";
 function App() {
   return (
     <Router>
@@ -44,6 +45,7 @@ function App() {
           <Route path='/userlist' element={<UserList />} />
 
           <Route path='/admin/orderlist' element={<OrderList />} />
+          <Route path='/admin/addproduct' element={<AddProduct />} />
           <Route path='/admin/user/:id/edit' element={<UserUpdate />} />
 
           <Route path='/register' element={<Registration />} />

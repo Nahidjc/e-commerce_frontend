@@ -107,7 +107,7 @@ export default function Orders() {
                                         <TableCell className='text-center'>{row.createdAt.substring(0, 10)}</TableCell>
                                         <TableCell className='text-center'>{row.user.name}</TableCell>
 
-                                        <TableCell className='text-center'> {row.isPaid ? <><i class="icon checkmark" style={{ color: 'green' }}></i> Paid</> : <>
+                                        <TableCell className='text-center'> {row.isPaid ? <><i className="icon checkmark" style={{ color: 'green' }}></i> Paid</> : <>
                                             <i className='fas fa-times' style={{ color: 'red' }}></i>
                                         </>}</TableCell>
                                         <TableCell className='text-center'> {row.isDelivered ? <><i className="fas fa-shipping-fast"></i> Delivered</> : <>

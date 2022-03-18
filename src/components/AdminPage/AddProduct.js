@@ -20,6 +20,7 @@ import { addProduct } from "../../actions/productActions";
 import axios from "axios";
 
 import { ToastContainer, toast } from 'react-toastify';
+import { PRODUCT_CREATE_RESET } from "../../constants/productConstants";
 
 
 
@@ -107,10 +108,11 @@ const AddProduct = () => {
             }
 
             const { data } = axios.post('http://127.0.0.1:8000/api/products/upload/', formData, config)
-
-            navigate('/admin/productlist')
-            setImage(data.image)
+            // setImage(data.image)
             setUploading(false)
+            dispatch({ type: PRODUCT_CREATE_RESET })
+            navigate('/admin/productlist')
+
 
 
         } catch (error) {

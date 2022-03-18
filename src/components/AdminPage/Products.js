@@ -16,7 +16,7 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import { mainListItems, secondaryListItems } from './listItems';
 
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { getUserList } from "../../actions/userActions";
 import Message from "../Message";
 import { Bars } from "react-loader-spinner";
@@ -164,9 +164,12 @@ const Products = () => {
                             <Typography variant="h3" component="h2">
                                 Products
                             </Typography>
-                            <Button variant="contained" startIcon={<AddIcon />}>
-                                Add Product
-                            </Button>
+                            <Link to='/admin/addproduct'>
+                                <Button variant="contained" startIcon={<AddIcon />}>
+                                    Add Product
+                                </Button>
+                            </Link>
+
                         </Grid>
                         <ToastContainer />
                         {deleteError && <Message variant='danger'>{deleteError}</Message>}

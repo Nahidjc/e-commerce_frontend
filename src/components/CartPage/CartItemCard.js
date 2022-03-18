@@ -4,7 +4,7 @@ import { addToCart, removeFromCart } from "../../actions/cartActions";
 import "./CartItemCard.css";
 
 export default function CartItemCard({ item }) {
-    console.log(item);
+
     const dispatch = useDispatch()
     const discountPrice = item.price * 0.10;
     const previousPrice = Number(item.price) + Number(discountPrice);

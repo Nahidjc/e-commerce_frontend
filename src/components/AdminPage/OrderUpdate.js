@@ -28,7 +28,8 @@ import { getUserDetails, getUserUpdate } from "../../actions/userActions";
 import Message from "../Message";
 import { Bars } from "react-loader-spinner";
 import { USER_UPDATE_RESET } from "../../constants/userConstants";
-import { getOrderDetails } from "../../actions/orderActions";
+import { getOrderDetails, getOrderUpdate } from "../../actions/orderActions";
+import { ORDER_UPDATE_RESET } from "../../constants/orderConstants";
 
 // import { Button, Col, Container, Form, Row } from 'react-bootstrap';
 
@@ -86,8 +87,8 @@ const OrderUpdate = () => {
     const { error, loading, order, success: orderDetailsSuccess } = orderDetails;
     const userLogin = useSelector(state => state.userLogin);
     const { userInfo } = userLogin
-    // const orderUpdate = useSelector(state => state.orderUpdate);
-    // const { success, loading: updateLoading } = orderUpdate
+    const orderUpdate = useSelector(state => state.orderUpdate);
+    const { UpdateSuccess, loading: updateLoading } = orderUpdate
 
     const params = useParams()
     const orderId = params.id
@@ -95,9 +96,10 @@ const OrderUpdate = () => {
 
 
     useEffect(() => {
-        // if (success) {
-        //     dispatch({ 'type': USER_UPDATE_RESET })
-        //     history('/userlist')
+        if (UpdateSuccess) {
+            dispatch({ 'type': ORDER_UPDATE_RESET })
+            history('/admin/orderlist')
+        }
         // } else {
 
 
@@ -105,11 +107,11 @@ const OrderUpdate = () => {
             history('/login')
         }
 
-        if (!order._id || order._id !== Number(orderId)) {
-            console.log("order call");
+        if (!order || order._id !== Number(orderId)) {
+
             dispatch(getOrderDetails(orderId))
         } else {
-            console.log("Order Paichi");
+
             setIsDelivered(order.isDelivered)
             setIsPaid(order.isPaid)
             setName(order.user.name)
@@ -122,18 +124,18 @@ const OrderUpdate = () => {
 
 
 
-    }, [userInfo, dispatch, order, orderId, history])
+    }, [userInfo, dispatch, order, orderId, history, UpdateSuccess])
 
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        // const user = {
-        //     id: userId,
-        //     email,
-        //     name,
-        //     username,
-        //     isAdmin
-        // }
+        const order = {
+            _id: orderId,
+            isDelivered: isDelivered
+
+        }
+        console.log(order);
+        dispatch(getOrderUpdate(order))
 
 
 

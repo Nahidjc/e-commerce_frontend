@@ -23,9 +23,9 @@ import Rating from './Rating';
 
 const Product = ({ product }) => {
     const history = useNavigate();
-    console.log(product);
+
     const addToCartHandler = () => {
-        console.log('Add to Cart id is: ', product.id);
+
         history(`/cart/${product._id}?qty=${1}`)
     }
     return (

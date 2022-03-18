@@ -33,7 +33,7 @@ const OrderCalculation = () => {
 
     const orderDetails = useSelector(state => state.orderDetails)
     const { order } = orderDetails;
-    console.log(order.orderItems);
+
     return (
         <TableContainer component={Paper}>
             <Table aria-label="spanning table">

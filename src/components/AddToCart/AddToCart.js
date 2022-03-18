@@ -8,59 +8,59 @@ import { useDispatch } from 'react-redux'
 import { Button } from '@mui/material'
 
 const AddToCart = ({ item }) => {
-    let params = useParams();
-    const { _id, countInStock } = item
-    const history = useNavigate();
-    const [amount, setAmount] = useState(1)
-    const addToCartHandler = () => {
-        console.log('Add to Cart id is: ', params.id);
-        history(`/cart/${params.id}?qty=${amount}`)
-    }
-    const dispatch = useDispatch()
+  let params = useParams();
+  const { _id, countInStock } = item
+  const history = useNavigate();
+  const [amount, setAmount] = useState(1)
+  const addToCartHandler = () => {
 
-    const increase = () => {
-        setAmount((oldAmount) => {
-            let tempAmount = oldAmount + 1
-            if (tempAmount > countInStock) {
-                tempAmount = countInStock
-            }
-            return tempAmount
-        })
-    }
-    const decrease = () => {
-        setAmount((oldAmount) => {
-            let tempAmount = oldAmount - 1
-            if (tempAmount < 1) {
-                tempAmount = 1
-            }
-            return tempAmount
-        })
-    }
+    history(`/cart/${params.id}?qty=${amount}`)
+  }
+  const dispatch = useDispatch()
 
-
-    return (
-        <Wrapper>
-
-            <div className='btn-container'>
-                <AmountButtons
-                    increase={increase}
-                    decrease={decrease}
-                    amount={amount}
-                />
+  const increase = () => {
+    setAmount((oldAmount) => {
+      let tempAmount = oldAmount + 1
+      if (tempAmount > countInStock) {
+        tempAmount = countInStock
+      }
+      return tempAmount
+    })
+  }
+  const decrease = () => {
+    setAmount((oldAmount) => {
+      let tempAmount = oldAmount - 1
+      if (tempAmount < 1) {
+        tempAmount = 1
+      }
+      return tempAmount
+    })
+  }
 
 
+  return (
+    <Wrapper>
 
-                <Link
-                    disabled={item.countInStock === 0}
-                    to={`/cart/${params.id}?qty=${amount}`}
-                    className='btn'
+      <div className='btn-container'>
+        <AmountButtons
+          increase={increase}
+          decrease={decrease}
+          amount={amount}
+        />
 
-                >
-                    add to cart
-                </Link>
-            </div>
-        </Wrapper>
-    )
+
+
+        <Link
+          disabled={item.countInStock === 0}
+          to={`/cart/${params.id}?qty=${amount}`}
+          className='btn'
+
+        >
+          add to cart
+        </Link>
+      </div>
+    </Wrapper>
+  )
 }
 const Wrapper = styled.section`
   margin-top: 2rem;

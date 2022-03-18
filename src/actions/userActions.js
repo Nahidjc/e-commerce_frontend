@@ -144,7 +144,7 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
 
 
 export const getUserUpdateProfile = (user) => async (dispatch, getState) => {
-    console.log(user);
+
 
     try {
         dispatch({
@@ -222,7 +222,7 @@ export const getUserList = () => async (dispatch, getState) => {
 }
 
 export const getUserUpdate = (user) => async (dispatch, getState) => {
-    console.log(user);
+
 
     try {
         dispatch({

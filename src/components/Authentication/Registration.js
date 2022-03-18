@@ -75,7 +75,7 @@ const Registration = () => {
             setMessage("Email field is required.")
         }
         else if (email && password) {
-            console.log(email, password);
+
             emailError = /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)
                 ? false
                 : true

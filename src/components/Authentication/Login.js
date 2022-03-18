@@ -47,13 +47,13 @@ const Login = () => {
     let emailError = false
 
     useEffect(() => {
-        console.log(redirect);
+
         if (userInfo) {
             toast.success("Successfully Login Done!");
             navigate(redirect)
         }
         if (error) {
-            console.log(error);
+
             toast.error(error);
         }
     }, [navigate, userInfo, redirect, error])

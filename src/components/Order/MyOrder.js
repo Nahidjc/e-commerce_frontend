@@ -30,7 +30,7 @@ const MyOrder = () => {
 
 
   useEffect(() => {
-    console.log(orders);
+
     if (userInfo) {
       dispatch(getMyOrders())
     } else {

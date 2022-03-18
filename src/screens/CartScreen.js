@@ -14,7 +14,7 @@ const CartScreen = () => {
     const userLogin = useSelector(state => state.userLogin);
     const { userInfo } = userLogin
     const qty = location.search ? Number(location.search.split('=')[1]) : 1
-    console.log("Cart", qty);
+
     const cart = useSelector(state => state.cart);
     const { cartItems } = cart;
     const removeFromCartHandler = (id) => {
@@ -27,7 +27,7 @@ const CartScreen = () => {
 
 
     }
-    console.log(cartItems);
+
     useEffect(() => {
         if (productId) {
             dispatch(addToCart(productId, qty))

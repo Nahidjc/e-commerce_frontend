@@ -73,7 +73,7 @@ export default function Orders() {
 
 
     React.useEffect(() => {
-        console.log(orders);
+
         if (userInfo) {
             dispatch(getTotalOrders())
         } else {

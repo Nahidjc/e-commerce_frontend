@@ -75,7 +75,7 @@ const AddProduct = () => {
     const params = useParams()
     useEffect(() => {
         if (successProduct) {
-            console.log(product);
+
             toast.success("Successfully Added The Product");
             setBrand('')
             setCategory('')

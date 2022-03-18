@@ -64,7 +64,7 @@ const OrderScreen = () => {
     }, [dispatch, order, orderId, successPay])
 
     const successPaymentHandler = (paymentResult) => {
-        console.log('paymentResult', paymentResult);
+
         dispatch(payOrder(orderId, paymentResult))
     }
     const options = { weekday: 'long', year: 'numeric', month: 'short', day: 'numeric' };

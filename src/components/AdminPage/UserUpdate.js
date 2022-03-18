@@ -101,7 +101,7 @@ const UserUpdate = () => {
                 if (!user.name || user._id !== Number(userId)) {
                     dispatch(getUserDetails(userId))
                 } else {
-                    console.log(user);
+
                     setName(user.name)
                     setEmail(user.email)
                     setUsername(user.username)
@@ -134,12 +134,12 @@ const UserUpdate = () => {
 
     const handleCheckBox = (e) => {
         e.preventDefault()
-        console.log(isAdmin);
+
         if (isAdmin) {
-            console.log("true chilo");
+
             setIsAdmin(false)
         } else {
-            console.log("false chilo");
+
             setIsAdmin(true)
         }
 

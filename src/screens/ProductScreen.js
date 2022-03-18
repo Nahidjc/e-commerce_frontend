@@ -15,13 +15,13 @@ const ProductScreen = ({ match }) => {
     const history = useNavigate();
     const productDetails = useSelector(state => state.productDetails)
     const { error, loading, product } = productDetails
-    console.log(product);
+
     const [qty, setQty] = useState(1)
     useEffect(() => {
         dispatch(listProductDetails(params.id))
     }, [])
     const addToCartHandler = () => {
-        console.log('Add to Cart id is: ', params.id);
+
         history(`/cart/${params.id}?qty=${qty}`)
     }
 

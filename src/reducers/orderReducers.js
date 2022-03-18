@@ -17,7 +17,11 @@ import {
     TOTAL_ORDER_REQUEST,
     TOTAL_ORDER_SUCCESS,
     TOTAL_ORDER_FAIL,
-    TOTAL_ORDER_RESET
+    TOTAL_ORDER_RESET,
+    ORDER_UPDATE_REQUEST,
+    ORDER_UPDATE_SUCCESS,
+    ORDER_UPDATE_FAIL,
+    ORDER_UPDATE_RESET
 } from "../constants/orderConstants";
 
 
@@ -55,7 +59,6 @@ export const orderDetailsReducer = (state = { loading: true, orderItems: [], shi
             return {
                 ...state,
                 loading: true,
-
 
             }
         case ORDER_DETAILS_SUCCESS:
@@ -158,6 +161,23 @@ export const TotalOrderList = (state = { orders: [] }, action) => {
                 orders: []
             }
 
+        default:
+            return state
+    }
+}
+
+
+
+export const orderUpdateReducer = (state = {}, action) => {
+    switch (action.type) {
+        case ORDER_UPDATE_REQUEST:
+            return { ...state, loading: true }
+        case ORDER_UPDATE_SUCCESS:
+            return { loading: false, UpdateSuccess: true, order: action.payload }
+        case ORDER_UPDATE_FAIL:
+            return { loading: false, error: action.payload }
+        case ORDER_UPDATE_RESET:
+            return {}
         default:
             return state
     }

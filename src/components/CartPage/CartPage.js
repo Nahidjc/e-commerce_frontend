@@ -39,7 +39,7 @@ export default function CartPage() {
 
 
     }
-    console.log(cart);
+
     useEffect(() => {
         if (productId) {
             dispatch(addToCart(productId, qty))

@@ -79,7 +79,7 @@ const UserList = () => {
 
 
     useEffect(() => {
-        console.log(users);
+
         if (userInfo) {
             if (userInfo.isAdmin) {
                 dispatch(getUserList())

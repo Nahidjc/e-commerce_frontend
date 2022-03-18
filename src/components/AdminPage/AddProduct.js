@@ -11,14 +11,15 @@ import Container from '@mui/material/Container';
 
 
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate, useParams } from "react-router-dom";
-import { getUserDetails, getUserUpdate } from "../../actions/userActions";
+import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
 import Message from "../Message";
 import { Bars } from "react-loader-spinner";
 
 import { makeStyles, Paper } from "@material-ui/core";
+import { addProduct } from "../../actions/productActions";
+import axios from "axios";
 
-
+import { ToastContainer, toast } from 'react-toastify';
 
 
 
@@ -50,7 +51,8 @@ const mdTheme = createTheme();
 
 const AddProduct = () => {
     const classes = useStyles();
-    const [Loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [uploading, setUploading] = useState(false)
     const [name, setName] = useState('')
     const [image, setImage] = useState(false);
     const [brand, setBrand] = useState("");
@@ -59,56 +61,62 @@ const AddProduct = () => {
     const [description, setDescription] = useState("");
     const [category, setCategory] = useState("");
     const [open, setOpen] = useState(true);
-    const toggleDrawer = () => {
-        setOpen(!open);
-    };
+
     const dispatch = useDispatch();
     const history = useNavigate();
-
+    const navigate = useNavigate()
     const userLogin = useSelector(state => state.userLogin);
     const { userInfo } = userLogin
-
+    const formData = new FormData()
 
     const createProduct = useSelector(state => state.createProduct);
-    const { product, loading, success, error } = createProduct
-
-
+    const { product, loading: addProductLoading, successProduct, error } = createProduct
     const params = useParams()
-
-
-
-
     useEffect(() => {
+        if (successProduct) {
+            console.log(product);
+            toast.success("Successfully Added The Product");
+            setBrand('')
+            setCategory('')
+            setDescription('')
+            setName('')
+            setPrice()
+            setStock()
 
-    }, [history, success])
+        }
+
+    }, [history, successProduct, dispatch])
+
 
     const styleUpload = {
         display: image ? "block" : "none",
     };
 
-    //   const handleUpload = async (e) => {
-    //     e.preventDefault();
-    //     try {
-    //       const file = e.target.files[0];
-    //       let formData = new FormData();
-    //       formData.append("file", file);
-    //       setLoading(true);
-    //       const res = await axios.post(
-    //         "https://shop-clue.herokuapp.com/api/upload",
-    //         formData,
-    //         {
-    //           headers: {
-    //             "content-type": "multipart/form-data",
-    //             Authorization: token,
-    //           },
-    //         }
-    //       );
-    //       setLoading(false);
-    //       setImage(res.data);
-    //     } catch (error) {
-    //       toast.error(error.response.data.msg);
-    //     }
-    //   };
+    const uploadFileHandler = async (e) => {
+        const file = e.target.files[0]
+        formData.append('image', file)
+        formData.append('product_id', product._id)
+
+        setUploading(true)
+
+        try {
+            const config = {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            }
+
+            const { data } = axios.post('http://127.0.0.1:8000/api/products/upload/', formData, config)
+
+            navigate('/admin/productlist')
+            setImage(data.image)
+            setUploading(false)
+
+
+        } catch (error) {
+            setUploading(false)
+        }
+    }
 
     //   const handleDestroy = async () => {
     //     try {
@@ -131,7 +139,7 @@ const AddProduct = () => {
 
     const submitHandler = (e) => {
         e.preventDefault()
-        console.log({
+        dispatch(addProduct({
             name,
             price,
             image,
@@ -139,39 +147,18 @@ const AddProduct = () => {
             category,
             countInStock,
             description
-        })
+        }))
+
     }
 
-    // const uploadFileHandler = async (e) => {
-    //     const file = e.target.files[0]
-    //     const formData = new FormData()
 
-    //     formData.append('image', file)
-    //     formData.append('product_id', productId)
-
-    //     setUploading(true)
-
-    //     try {
-    //         const config = {
-    //             headers: {
-    //                 'Content-Type': 'multipart/form-data'
-    //             }
-    //         }
-
-    //         const { data } = await axios.post('/api/products/upload/', formData, config)
-
-
-    //         setImage(data)
-    //         setUploading(false)
-
-    //     } catch (error) {
-    //         setUploading(false)
-    //     }
-    // }
 
     return (
         <div className={classes.root}>
             <Container maxWidth="lg">
+                <ToastContainer />
+                {uploading && <div className="d-flex justify-content-center align-items-center " style={{ height: '80vh' }}> <Bars color="#00BFFF" height={80} width={80} /></div>}
+                {addProductLoading && <div className="d-flex justify-content-center align-items-center " style={{ height: '80vh' }}> <Bars color="#00BFFF" height={80} width={80} /></div>}
                 <Grid container spacing={3}>
                     <Grid item xl={5} lg={5} md={5} xs={12}>
                         <div className="upload">
@@ -179,6 +166,7 @@ const AddProduct = () => {
                                 type="file"
                                 name="file"
                                 id="file_up"
+                                onChange={uploadFileHandler}
 
                             />
                             {loading ? (
@@ -212,6 +200,7 @@ const AddProduct = () => {
                                     required
                                     label="Product Name"
                                     variant="outlined"
+                                    value={name}
                                     style={{ marginBottom: "15px" }}
                                     className={classes.inputFeild}
                                     onChange={(e) => {
@@ -223,6 +212,7 @@ const AddProduct = () => {
                                 <TextField
                                     required
                                     label="Brand"
+                                    value={brand}
                                     variant="outlined"
                                     style={{ marginBottom: "15px" }}
                                     className={classes.inputFeild}
@@ -235,6 +225,7 @@ const AddProduct = () => {
                                     <TextField
                                         id="outlined-basic"
                                         required
+                                        value={category}
                                         label="Category"
                                         style={{ marginBottom: "15px" }}
                                         variant="outlined"

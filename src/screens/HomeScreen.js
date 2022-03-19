@@ -12,6 +12,7 @@ import Paper from '@mui/material/Paper';
 import ProductCarosel from '../components/ProductCarosel';
 import FilterCategory from '../components/FilterCategory';
 import FeaturedProducts from '../components/FeatureProduct/FeaturedProducts';
+import Searchbar from './SearchBar/SearchBar';
 
 const Item = styled(Paper)(({ theme }) => ({
     ...theme.typography.body2,
@@ -30,7 +31,9 @@ const HomeScreen = () => {
     }, [dispatch])
     return (
         <div>
+            <Searchbar />
             <div className="container">
+
                 <div className="row ">
                     <div className="col-md-3">
                         <FilterCategory />

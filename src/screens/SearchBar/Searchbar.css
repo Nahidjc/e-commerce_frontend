@@ -1,0 +1,15 @@
+.ui.search {
+  margin-top: 50px;
+  text-align: center;
+}
+
+.search {
+  max-height: 90vh;
+}
+.input {
+  text-align: center;
+}
+
+i {
+  cursor: pointer;
+}

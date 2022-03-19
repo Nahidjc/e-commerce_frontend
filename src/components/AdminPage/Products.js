@@ -115,7 +115,7 @@ const Products = () => {
             dispatch({ type: PRODUCT_DELETE_RESET })
         }
 
-    }, [dispatch, navigate, userInfo, deleteSuccess])
+    }, [dispatch, navigate, message, userInfo, deleteSuccess])
 
     return (
         <ThemeProvider theme={mdTheme}>

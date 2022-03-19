@@ -1,90 +1,127 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-
-
+import { Form, Button } from 'semantic-ui-react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { listProductDetails } from '../../actions/productActions'
-import PageHero from './PageHero'
-import ProductImages from './ProductImages'
 import Stars from './Stars'
 import AddToCart from '../AddToCart/AddToCart'
-import { Button } from 'react-bootstrap'
 import Review from '../Review/Review'
 import { Paper } from '@mui/material'
+
+import Rating from '@mui/material/Rating';
+import StarIcon from '@mui/icons-material/Star';
+import Message from '../Message'
+import { Bars } from 'react-loader-spinner'
 const SingleProductPage = () => {
   let params = useParams();
+  const [comment, setComment] = useState('')
+  const [rating, setRating] = useState(2)
   const dispatch = useDispatch();
   const history = useNavigate();
   const productDetails = useSelector(state => state.productDetails)
   const { error, loading, product } = productDetails
-
-  const [qty, setQty] = useState(1)
+  const userLogin = useSelector(state => state.userLogin);
+  const { userInfo } = userLogin
+  // const [qty, setQty] = useState(1)
   useEffect(() => {
     dispatch(listProductDetails(params.id))
-  }, [])
-  const addToCartHandler = () => {
+  }, [dispatch, params.id])
 
-    history(`/cart/${params.id}?qty=${qty}`)
+
+  // const addToCartHandler = () => {
+
+  //   history(`/cart/${params.id}?qty=${qty}`)
+  // }
+
+  const handleReview = () => {
+    console.log(rating, comment);
   }
+
+
+
   return (
-    <div className="container">
+    <div className="container" >
 
       <Wrapper>
         <div className=' section-center page'>
           <Link to='/' className='btn'>
             back to products
           </Link>
-          <Paper elevation={2} style={{ padding: '20px', margin: '20px' }}>
-            <div className='section'>
-              <div className="row">
-                <div className="col-md-6">
-                  <img className='img-fluid' src={`http://127.0.0.1:8000${product.image}`} alt={product.name} />
+          {loading ? <div className="d-flex justify-content-center align-items-center " style={{ height: '80vh' }}> <Bars color="#00BFFF" height={80} width={80} /></div>
+            : error ? <Message variant='danger'>{error}</Message>
+              : <>
+                <Paper elevation={2} style={{ padding: '20px', margin: '20px' }}>
+                  <div className='section'>
+                    <div className="row">
+                      <div className="col-md-6">
+                        <img className='img-fluid' src={`http://127.0.0.1:8000${product.image}`} alt={product.name} />
+                      </div>
+                      <div className="col-md-6">
+
+                        <section className='content'>
+                          <h2>{product.name}</h2>
+                          <Stars stars={Number(product.rating)} reviews={product.numReviews} />
+                          <h5 className='price'>${product.price}</h5>
+                          <p className='desc'>{product.description}</p>
+                          <p className='info'>
+                            <span>Available : </span>
+                            {product.countInStock > 0 ? 'In stock' : 'out of stock'}
+                          </p>
+                          <p className='info'>
+                            <span>Category :</span>
+                            {product.category}
+                          </p>
+                          <p className='info'>
+                            <span>Brand :</span>
+                            {product.brand}
+                          </p>
+                          <hr />
+                          {product.countInStock > 0 ? <AddToCart item={product} /> : <>
+
+                            <Button color='danger'>Out of Stock</Button>
+                          </>}
+
+                        </section>
+
+                      </div>
+
+                    </div>
+
+
+                  </div>
+                </Paper>
+                <Paper elevation={2} style={{ padding: '20px', margin: '20px' }}>
+                  <Review></Review>
+                </Paper>
+
+                {userInfo && <div className="write-review mt-5">
+                  <Paper elevation={2} style={{ padding: '20px', margin: '20px' }} >
+                    <h4>Write Review</h4>
+                    <Rating
+                      name="hover-feedback"
+                      value={rating}
+                      precision={0.5}
+                      onChange={(event, newValue) => {
+                        setRating(newValue);
+                      }}
+
+                      emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
+                    />
+                    <Form reply onSubmit={handleReview}>
+                      <Form.TextArea onChange={e => setComment(e.target.value)} />
+                      <Button content='Add Review' labelPosition='left' icon='edit' primary />
+                    </Form>
+                  </Paper>
                 </div>
-                <div className="col-md-6">
-
-                  <section className='content'>
-                    <h2>{product.name}</h2>
-                    <Stars stars={Number(product.rating)} reviews={product.numReviews} />
-                    <h5 className='price'>${product.price}</h5>
-                    <p className='desc'>{product.description}</p>
-                    <p className='info'>
-                      <span>Available : </span>
-                      {product.countInStock > 0 ? 'In stock' : 'out of stock'}
-                    </p>
-                    <p className='info'>
-                      <span>Category :</span>
-                      {product.category}
-                    </p>
-                    <p className='info'>
-                      <span>Brand :</span>
-                      {product.brand}
-                    </p>
-                    <hr />
-                    {product.countInStock > 0 ? <AddToCart item={product} /> : <>
-
-                      <Button color='danger'>Out of Stock</Button>
-                    </>}
-
-                  </section>
-
-                </div>
-
-              </div>
-
-
-            </div>
-          </Paper>
-          <Paper elevation={2} style={{ padding: '20px', margin: '20px' }}>
-            <Review></Review>
-          </Paper>
+                }
+              </>
+          }
         </div>
-
-
       </Wrapper>
 
-    </div>
+    </div >
 
   )
 }

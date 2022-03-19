@@ -13,7 +13,7 @@ const Review = () => {
                     <span>24 Jun 2021</span>
                 </div>
             </div>
-            <div><span><h5 style={{ display: 'inline-block' }}>by Rakib S. </h5> <span style={{ color: 'green' }} ><VerifiedIcon />Verified Purchase</span></span>
+            <div><span>by <h5 style={{ display: 'inline-block' }}>Nahid Hasan </h5> <span style={{ color: 'green' }} ><VerifiedIcon />Verified Purchase</span></span>
 
             </div>
             <div>

@@ -31,7 +31,7 @@ const HomeScreen = () => {
     }, [dispatch])
     return (
         <div>
-            <Searchbar />
+            {/* <Searchbar /> */}
             <div className="container">
 
                 <div className="row ">

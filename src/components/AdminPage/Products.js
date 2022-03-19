@@ -27,6 +27,7 @@ import { Button } from "@mui/material";
 import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
 import { ToastContainer, toast } from 'react-toastify';
+import { PRODUCT_DELETE_RESET } from "../../constants/productConstants";
 
 
 const drawerWidth = 240;
@@ -111,6 +112,7 @@ const Products = () => {
         }
         if (deleteSuccess) {
             toast.success(message);
+            dispatch({ type: PRODUCT_DELETE_RESET })
         }
 
     }, [dispatch, navigate, userInfo, deleteSuccess])

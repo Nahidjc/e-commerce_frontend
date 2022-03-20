@@ -1,23 +1,25 @@
 import React from 'react';
 import Rating from './Rating';
-
+import moment from 'moment';
 import VerifiedIcon from '@mui/icons-material/Verified';
-const Review = () => {
+const Review = ({ review }) => {
+
+
     return (
         <div>
             <div className="d-flex justify-content-between">
                 <div className="">
-                    <Rating stars={5}></Rating>
+                    <Rating stars={review.rating}></Rating>
                 </div>
                 <div className="">
-                    <span>24 Jun 2021</span>
+                    <span>{moment(review.createdAt).format('YYYY-MM-DD HH:MM:SS')}</span>
                 </div>
             </div>
-            <div><span>by <h5 style={{ display: 'inline-block' }}>Nahid Hasan </h5> <span style={{ color: 'green' }} ><VerifiedIcon />Verified Purchase</span></span>
+            <div><span>by <h5 style={{ display: 'inline-block' }}>{review.name}</h5> <span style={{ color: 'green' }} ><VerifiedIcon />Verified Purchase</span></span>
 
             </div>
             <div>
-                <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni quibusdam facilis placeat, labore, corrupti asperiores odit quod possimus impedit sapiente ut. Vitae laboriosam veniam itaque recusandae optio vel, repellendus incidunt.</span>
+                <span>{review.comment}</span>
             </div>
             <hr />
 

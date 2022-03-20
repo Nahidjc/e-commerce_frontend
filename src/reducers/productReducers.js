@@ -13,6 +13,10 @@ import {
     PRODUCT_CREATE_FAIL,
     PRODUCT_CREATE_RESET,
     PRODUCT_DELETE_RESET,
+    PRODUCT_REVIEW_REQUEST,
+    PRODUCT_REVIEW_SUCCESS,
+    PRODUCT_REVIEW_FAIL,
+    PRODUCT_REVIEW_RESET,
 } from "../constants/productConstants"
 
 export const productListReducer = (state = { products: [] }, action) => {
@@ -71,6 +75,20 @@ export const createProductReducer = (state = { product: {} }, action) => {
             return {
                 product: {}
             }
+        default:
+            return state
+    }
+}
+export const reviewProductReducer = (state = {}, action) => {
+    switch (action.type) {
+        case PRODUCT_REVIEW_REQUEST:
+            return { loading: true }
+        case PRODUCT_REVIEW_SUCCESS:
+            return { loading: false, successReview: true, data: action.payload }
+        case PRODUCT_REVIEW_FAIL:
+            return { loading: false, error: action.payload }
+        case PRODUCT_REVIEW_RESET:
+            return {}
         default:
             return state
     }

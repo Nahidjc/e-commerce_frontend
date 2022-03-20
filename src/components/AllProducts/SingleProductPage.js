@@ -4,7 +4,7 @@ import { Form, Button } from 'semantic-ui-react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { listProductDetails } from '../../actions/productActions'
+import { addProductReview, listProductDetails } from '../../actions/productActions'
 import Stars from './Stars'
 import AddToCart from '../AddToCart/AddToCart'
 import Review from '../Review/Review'
@@ -14,6 +14,7 @@ import Rating from '@mui/material/Rating';
 import StarIcon from '@mui/icons-material/Star';
 import Message from '../Message'
 import { Bars } from 'react-loader-spinner'
+import { PRODUCT_REVIEW_RESET } from '../../constants/productConstants'
 const SingleProductPage = () => {
   let params = useParams();
   const [comment, setComment] = useState('')
@@ -24,10 +25,17 @@ const SingleProductPage = () => {
   const { error, loading, product } = productDetails
   const userLogin = useSelector(state => state.userLogin);
   const { userInfo } = userLogin
+  const reviewProduct = useSelector(state => state.reviewProduct);
+  const { loading: reviewLoading, successReview, error: reviewError, data } = reviewProduct
   // const [qty, setQty] = useState(1)
   useEffect(() => {
     dispatch(listProductDetails(params.id))
-  }, [dispatch, params.id])
+    if (successReview) {
+      setComment('')
+      setRating(2)
+      dispatch({ type: PRODUCT_REVIEW_RESET })
+    }
+  }, [dispatch, params.id, successReview])
 
 
   // const addToCartHandler = () => {
@@ -36,7 +44,10 @@ const SingleProductPage = () => {
   // }
 
   const handleReview = () => {
+    dispatch(addProductReview({ _id: product._id, rating: rating, comment: comment }))
     console.log(rating, comment);
+    setComment('')
+    setRating(2)
   }
 
 
@@ -49,6 +60,15 @@ const SingleProductPage = () => {
           <Link to='/' className='btn'>
             back to products
           </Link>
+          {reviewLoading || reviewError &&
+
+            <div className="mt-5 p-5">
+              {reviewLoading && <div className="d-flex justify-content-center align-items-center " style={{ height: '80vh' }}> <Bars color="#00BFFF" height={80} width={80} /></div>}
+              {reviewError && <Message variant='danger'>{reviewError}</Message>}
+            </div>
+          }
+
+
           {loading ? <div className="d-flex justify-content-center align-items-center " style={{ height: '80vh' }}> <Bars color="#00BFFF" height={80} width={80} /></div>
             : error ? <Message variant='danger'>{error}</Message>
               : <>
@@ -92,9 +112,11 @@ const SingleProductPage = () => {
 
                   </div>
                 </Paper>
-                <Paper elevation={2} style={{ padding: '20px', margin: '20px' }}>
-                  <Review></Review>
-                </Paper>
+                {
+                  product.reviews.length ? <Paper elevation={2} style={{ padding: '20px', margin: '20px' }}>
+                    {product.reviews.map(review => <Review review={review}></Review>)}
+                  </Paper> : <></>
+                }
 
                 {userInfo && <div className="write-review mt-5">
                   <Paper elevation={2} style={{ padding: '20px', margin: '20px' }} >
@@ -110,7 +132,7 @@ const SingleProductPage = () => {
                       emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
                     />
                     <Form reply onSubmit={handleReview}>
-                      <Form.TextArea onChange={e => setComment(e.target.value)} />
+                      <Form.TextArea value={comment} onChange={e => setComment(e.target.value)} />
                       <Button content='Add Review' labelPosition='left' icon='edit' primary />
                     </Form>
                   </Paper>

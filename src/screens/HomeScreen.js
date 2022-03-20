@@ -31,11 +31,11 @@ const HomeScreen = () => {
     }, [dispatch])
     return (
         <div>
-            {/* <Searchbar /> */}
+            <Searchbar />
             <div className="container">
 
-                <div className="row ">
-                    <div className="col-md-3">
+                <div className="row mt-2">
+                    <div className="col-md-3 p-3">
                         <FilterCategory />
                     </div>
                     <div className="col-md-9">
@@ -47,9 +47,9 @@ const HomeScreen = () => {
             {loading ? <div className="d-flex justify-content-center align-items-center " style={{ height: '80vh' }}> <Bars color="#00BFFF" height={80} width={80} /></div>
                 : error ? <Message variant='danger'>{error}</Message>
                     : <>
-                        <FeaturedProducts featured={products} />
-                        <div className="mb-5 container">
 
+                        <div className="mb-5 container">
+                            <FeaturedProducts featured={products} />
 
                             <div className='row'>
 

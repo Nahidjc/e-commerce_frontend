@@ -1,24 +1,43 @@
-import React from "react";
-// import SearchBar from "material-ui-search-bar";
-// import LinearProgress from "@material-ui/core/LinearProgress";
-
-
-// this is re-rendered whenever the relevant parts of the used data stores change
+import { React, useState } from "react";
+import "./Searchbar.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { FormControl, Form, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import { listProducts } from "../../actions/productActions";
+import { useDispatch } from "react-redux";
 
 const Searchbar = () => {
-    const searchText = (e) => {
-        console.log(e);
+    const [searchValue, setSearchValue] = useState('')
+    const dispatch = useDispatch()
 
+    const handleSearch = (e) => {
+        const searchText = e.target.value;
+        setSearchValue(searchText);
+
+        dispatch(listProducts(searchValue))
+        console.log(searchText);
     }
-    return (
-        <div className="searchbar container mb-5">
-            {/* <SearchBar
-                onChange={(e) => searchText()}
-                placeholder="Search Products ..."
-                autoFocus
 
-            /> */}
-            {/* <LinearProgress /> */}
+
+    return (
+        <div className="nav-container ">
+
+            <div className="search-container">
+                <Form className="d-flex align-items-center">
+                    <FormControl
+                        type="search"
+                        placeholder="Search"
+                        className="mr-2"
+                        aria-label="Search"
+                        onChange={handleSearch}
+
+                    />
+                    <Button variant="outline-success" >
+                        Search
+                    </Button>
+                </Form>
+            </div>
+
         </div>
     );
 };

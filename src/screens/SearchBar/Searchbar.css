@@ -1,15 +1,48 @@
-.ui.search {
-  margin-top: 50px;
-  text-align: center;
+@import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
+
+.nav-container {
+  font-family: "Gilroy", sans-serif;
+  font-size: 0.9rem;
+  padding: 25px 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.search {
-  max-height: 90vh;
-}
-.input {
-  text-align: center;
+.nav-container a:hover {
+  text-decoration: none;
 }
 
-i {
+.nav-container .add-btn {
+  border: 2px solid #e63841;
+  border-radius: 6px;
+  padding: 10px 15px;
   cursor: pointer;
+  font-family: "Gilroy", sans-serif;
+  font-weight: 900;
+  color: #cc2c34ec;
+  transition: 100ms ease-out;
+}
+
+.nav-container .add-btn:hover {
+  background-color: #e63841;
+  color: white;
+}
+
+.nav-container .add-btn:active {
+  transform: scale(0.96);
+}
+
+.nav-container h1 {
+  margin: 0;
+  font-weight: 600;
+  color: #201616;
+}
+
+.nav-container a:hov {
+  text-decoration: none;
+}
+
+#logo-color {
+  color: #e63841;
 }

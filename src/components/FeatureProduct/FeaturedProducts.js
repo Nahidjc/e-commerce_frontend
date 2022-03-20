@@ -11,6 +11,7 @@ const FeaturedProducts = ({ featured }) => {
         <h2>featured products</h2>
         <div className='underline'></div>
       </div>
+
       <div className="row">
         <div className='section-center featured'>
 

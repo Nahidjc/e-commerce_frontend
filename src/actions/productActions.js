@@ -19,16 +19,23 @@ import {
 } from "../constants/productConstants"
 
 
-export const listProducts = (searchValue) => async (dispatch) => {
-    searchValue = (typeof searchValue !== 'undefined') ? searchValue : 'Nahid'
+export const listProducts = (Value = {}) => async (dispatch) => {
+
+
+
+
+    const searchValue = (typeof Value.searchValue === 'undefined') ? 'Nahid' : Value.searchValue;
     console.log('Search', searchValue);
+
+    const ProductValue = { 'searchText': searchValue, 'page': Value.page ? Value.page : 1 }
+
 
 
     try {
         dispatch({ type: PRODUCT_LIST_REQUEST })
         const { data } = await axios.post(
             'http://127.0.0.1:8000/api/products/',
-            { 'searchText': searchValue }
+            ProductValue
         )
 
         dispatch({

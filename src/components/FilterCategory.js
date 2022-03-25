@@ -1,16 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormHelperText from '@mui/material/FormHelperText';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import FilterSideBar from './FilterSidebar/FilterSidebar';
+import { listProducts } from '../actions/productActions';
+import { useDispatch } from 'react-redux';
 
 export default function FilterCategory() {
     const [category, setCategory] = React.useState('');
-
+    const dispatch = useDispatch()
     const handleChange = (event) => {
-        setCategory(event.target.value);
+        dispatch(listProducts({ "searchValue": event.target.value }));
+        console.log(category);
+
     };
 
     return (
@@ -27,12 +31,12 @@ export default function FilterCategory() {
                     <MenuItem value="">
                         <em>None</em>
                     </MenuItem>
-                    <MenuItem value={10}>Electronics</MenuItem>
-                    <MenuItem value={20}>Mobile Phone</MenuItem>
-                    <MenuItem value={30}>Laptop</MenuItem>
-                    <MenuItem value={40}>Camera</MenuItem>
-                    <MenuItem value={50}>Man's Clothing</MenuItem>
-                    <MenuItem value={60}>Women's Clothing</MenuItem>
+                    <MenuItem value="Electronics">Electronics</MenuItem>
+                    <MenuItem value="Mobile Phone">Mobile Phone</MenuItem>
+                    <MenuItem value='Laptop'>Laptop</MenuItem>
+                    <MenuItem value='Camera'>Camera</MenuItem>
+                    <MenuItem value="Man's Clothing">Man's Clothing</MenuItem>
+                    <MenuItem value="Women's Clothing">Women's Clothing</MenuItem>
                 </Select>
                 <FormHelperText>
 

@@ -13,6 +13,8 @@ import ProductCarosel from '../components/ProductCarosel';
 import FilterCategory from '../components/FilterCategory';
 import FeaturedProducts from '../components/FeatureProduct/FeaturedProducts';
 import Searchbar from './SearchBar/SearchBar';
+import Pagination from '@mui/material/Pagination';
+import Stack from '@mui/material/Stack';
 
 const Item = styled(Paper)(({ theme }) => ({
     ...theme.typography.body2,
@@ -24,7 +26,14 @@ const Item = styled(Paper)(({ theme }) => ({
 const HomeScreen = () => {
     const dispatch = useDispatch()
     const productList = useSelector(state => state.productList)
-    const { error, loading, products } = productList
+    const { error, loading, products, page, pages } = productList
+    const [Page, setPage] = useState(1);
+    const handlePageChange = (event, value) => {
+        console.log(value);
+        setPage(value);
+        dispatch(listProducts({ "searchValue": '', 'page': value }))
+
+    };
 
     useEffect(() => {
         dispatch(listProducts())
@@ -49,7 +58,7 @@ const HomeScreen = () => {
                     : <>
 
                         <div className="mb-5 container">
-                            <FeaturedProducts featured={products} />
+                            {/* <FeaturedProducts featured={products} /> */}
 
                             <div className='row'>
 
@@ -77,6 +86,13 @@ const HomeScreen = () => {
 
 
             }
+            <div className="container">
+                <div className="d-flex justify-content-center">
+                    <Stack spacing={2}>
+                        <Pagination onChange={handlePageChange} count={pages} color="primary" />
+                    </Stack>
+                </div>
+            </div>
 
         </div>
     );

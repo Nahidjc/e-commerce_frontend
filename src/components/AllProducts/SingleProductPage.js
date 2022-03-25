@@ -4,7 +4,7 @@ import { Form, Button } from 'semantic-ui-react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { addProductReview, listProductDetails } from '../../actions/productActions'
+import { addProductReview, listProductDetails, listProducts } from '../../actions/productActions'
 import Stars from './Stars'
 import AddToCart from '../AddToCart/AddToCart'
 import Review from '../Review/Review'
@@ -15,33 +15,39 @@ import StarIcon from '@mui/icons-material/Star';
 import Message from '../Message'
 import { Bars } from 'react-loader-spinner'
 import { PRODUCT_REVIEW_RESET } from '../../constants/productConstants'
+import { Typography } from '@material-ui/core'
+import Product from '../Product'
 const SingleProductPage = () => {
   let params = useParams();
   const [comment, setComment] = useState('')
   const [rating, setRating] = useState(2)
   const dispatch = useDispatch();
-  const history = useNavigate();
   const productDetails = useSelector(state => state.productDetails)
-  const { error, loading, product } = productDetails
+  const { error, loading, product, productDetailsSuccess } = productDetails
   const userLogin = useSelector(state => state.userLogin);
   const { userInfo } = userLogin
   const reviewProduct = useSelector(state => state.reviewProduct);
   const { loading: reviewLoading, successReview, error: reviewError, data } = reviewProduct
-  // const [qty, setQty] = useState(1)
+  const productList = useSelector(state => state.productList)
+  const { error: relatedProductError, loading: relatedLading, products } = productList
+
+
   useEffect(() => {
     dispatch(listProductDetails(params.id))
+    if (productDetailsSuccess) {
+      dispatch(listProducts({ "searchValue": product.brand, 'page': 1 }))
+    }
     if (successReview) {
       setComment('')
       setRating(2)
       dispatch({ type: PRODUCT_REVIEW_RESET })
     }
-  }, [dispatch, params.id, successReview])
+  }, [dispatch, params.id, successReview, productDetailsSuccess, product.brand])
 
 
-  // const addToCartHandler = () => {
 
-  //   history(`/cart/${params.id}?qty=${qty}`)
-  // }
+
+
 
   const handleReview = () => {
     dispatch(addProductReview({ _id: product._id, rating: rating, comment: comment }))
@@ -60,7 +66,7 @@ const SingleProductPage = () => {
           <Link to='/' className='btn'>
             back to products
           </Link>
-          {reviewLoading || reviewError &&
+          {(reviewLoading || reviewError) &&
 
             <div className="mt-5 p-5">
               {reviewLoading && <div className="d-flex justify-content-center align-items-center " style={{ height: '80vh' }}> <Bars color="#00BFFF" height={80} width={80} /></div>}
@@ -111,7 +117,44 @@ const SingleProductPage = () => {
 
 
                   </div>
+
                 </Paper>
+                <div className="mt-2 " style={{ padding: '20px', margin: '10px' }}>
+                  <Typography variant="h5" component="h2" className='my-3' style={{ color: '#EA6721' }}>RELATED PRODUCTS</Typography>
+                  {relatedLading ? <div className="d-flex justify-content-center align-items-center " style={{ height: '80vh' }}> <Bars color="#00BFFF" height={80} width={80} /></div>
+                    : relatedProductError ? <Message variant='danger'>{relatedProductError}</Message>
+                      : <>
+
+                        <div className="mb-5 container">
+                          {/* <FeaturedProducts featured={products} /> */}
+
+                          <div className='row'>
+
+                            <div className='col-md-12'>
+                              <div className="row ">
+                                {
+                                  products.map(product => (
+
+                                    <Product key={product._id} product={product}></Product>
+
+                                  ))
+                                }
+                              </div>
+
+
+
+                            </div>
+
+                          </div>
+                        </div>
+
+
+                      </>
+
+
+
+                  }
+                </div>
                 {
                   product.reviews.length ? <Paper elevation={2} style={{ padding: '20px', margin: '20px' }}>
                     {product.reviews.map(review => <Review review={review}></Review>)}

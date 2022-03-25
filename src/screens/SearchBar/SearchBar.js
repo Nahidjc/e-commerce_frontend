@@ -14,8 +14,12 @@ const Searchbar = () => {
         const searchText = e.target.value;
         setSearchValue(searchText);
 
-        dispatch(listProducts(searchValue))
-        console.log(searchText);
+
+    }
+
+    const handleSearchProducts = () => {
+        dispatch(listProducts({ "searchValue": searchValue }))
+
     }
 
 
@@ -32,7 +36,7 @@ const Searchbar = () => {
                         onChange={handleSearch}
 
                     />
-                    <Button variant="outline-success" >
+                    <Button variant="outline-success" onClick={handleSearchProducts}>
                         Search
                     </Button>
                 </Form>

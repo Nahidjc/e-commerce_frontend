@@ -11,7 +11,7 @@ import Loader from '../components/Loader';
 import { PayPalButton } from 'react-paypal-button-v2'
 import { ORDER_PAY_RESET } from '../constants/orderConstants';
 import './OrderScreen.css'
-import dateFormat, { masks } from "dateformat";
+import dateFormat from "dateformat";
 const OrderScreen = () => {
     let params = useParams();
     const orderId = params.id;
@@ -61,13 +61,12 @@ const OrderScreen = () => {
             }
         }
 
-    }, [dispatch, order, orderId, successPay])
+    }, [dispatch, order, navigate, userInfo, orderId, successPay])
 
     const successPaymentHandler = (paymentResult) => {
 
         dispatch(payOrder(orderId, paymentResult))
     }
-    const options = { weekday: 'long', year: 'numeric', month: 'short', day: 'numeric' };
     return loading ? (
         <div className="d-flex justify-content-center align-items-center " style={{ height: '80vh' }}> <Bars color="#00BFFF" height={80} width={80} /></div>
     ) : error ? (

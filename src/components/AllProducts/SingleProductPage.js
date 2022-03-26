@@ -82,7 +82,7 @@ const SingleProductPage = () => {
                   <div className='section'>
                     <div className="row">
                       <div className="col-md-6">
-                        <img className='img-fluid' src={`http://127.0.0.1:8000${product.image}`} alt={product.name} />
+                        <img className='img-fluid' src={`https://nihashopbd.pythonanywhere.com/${product.image}`} alt={product.name} />
                       </div>
                       <div className="col-md-6">
 

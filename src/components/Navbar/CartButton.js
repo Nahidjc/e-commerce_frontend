@@ -1,7 +1,7 @@
 import React from "react";
 import { FaShoppingCart, FaUserMinus, FaUserPlus } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { logout } from "../../actions/userActions";
 import { MY_ORDER_RESET } from "../../constants/orderConstants";

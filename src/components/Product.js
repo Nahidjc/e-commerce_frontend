@@ -31,7 +31,7 @@ const Product = ({ product }) => {
     return (
         // <Card className='my-3 p-3 rounded'>
         //     <Link to={`/product/${product._id}`}>
-        //         <Card.Img src={`http://127.0.0.1:8000${product.image}`} />
+        //         <Card.Img src={`https://nihashopbd.pythonanywhere.com/${product.image}`} />
         //     </Link>
         //     <Card.Body>
         //         <Link style={{ 'textDecoration': "none" }} to={`/product/${product._id}`}>
@@ -63,7 +63,7 @@ const Product = ({ product }) => {
                     height="194"
                     width='200'
 
-                    image={`http://127.0.0.1:8000${product.image}`}
+                    image={`https://nihashopbd.pythonanywhere.com${product.image}`}
                     alt={product.name}
                 />
                 <CardContent>

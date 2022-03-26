@@ -12,7 +12,6 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import Message from '../Message';
 import { register } from '../../actions/userActions';
@@ -44,12 +43,12 @@ const theme = createTheme();
 const Registration = () => {
     const [message, setMessage] = useState('')
     let location = useLocation();
-    let params = useParams();
+
     const dispatch = useDispatch();
     const history = useNavigate();
     const redirect = location.search ? location.search.split('=')[1] : '/';
     const userRegister = useSelector(state => state.userRegister);
-    const { error, loading, userInfo } = userRegister;
+    const { error, userInfo } = userRegister;
 
     useEffect(() => {
         if (userInfo) {

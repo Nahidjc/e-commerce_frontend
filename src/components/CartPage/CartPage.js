@@ -17,8 +17,8 @@ export default function CartPage() {
     const dispatch = useDispatch();
     const history = useNavigate();
     const productId = params.id;
-    const userLogin = useSelector(state => state.userLogin);
-    const { userInfo } = userLogin
+    // const userLogin = useSelector(state => state.userLogin);
+    // const { userInfo } = userLogin
     const qty = location.search ? Number(location.search.split('=')[1]) : 1
     console.log("Cart", qty);
     const cart = useSelector(state => state.cart);

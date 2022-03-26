@@ -9,11 +9,11 @@ import { listProducts } from '../actions/productActions';
 import { useDispatch } from 'react-redux';
 
 export default function FilterCategory() {
-    const [category, setCategory] = React.useState('');
+    const [category, setCategory] = useState('');
     const dispatch = useDispatch()
     const handleChange = (event) => {
         dispatch(listProducts({ "searchValue": event.target.value }));
-        console.log(category);
+        setCategory(category);
 
     };
 

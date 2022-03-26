@@ -51,10 +51,10 @@ const useStyles = makeStyles((theme) => ({
 
 const AddProduct = () => {
     const classes = useStyles();
-    const [loading, setLoading] = useState(false);
+    // const [loading, setLoading] = useState(false);
     const [uploading, setUploading] = useState(false)
     const [name, setName] = useState('')
-    const [image, setImage] = useState(false);
+    // const [image, setImage] = useState(false);
     const [brand, setBrand] = useState("");
     const [price, setPrice] = useState(0);
     const [countInStock, setStock] = useState(0);
@@ -70,7 +70,7 @@ const AddProduct = () => {
     const formData = new FormData()
 
     const createProduct = useSelector(state => state.createProduct);
-    const { product, loading: addProductLoading, successProduct, error } = createProduct
+    const { product, loading: addProductLoading, successProduct } = createProduct
 
     useEffect(() => {
         if (successProduct) {
@@ -88,9 +88,9 @@ const AddProduct = () => {
     }, [history, successProduct, dispatch])
 
 
-    const styleUpload = {
-        display: image ? "block" : "none",
-    };
+    // const styleUpload = {
+    //     display: image ? "block" : "none",
+    // };
 
     const uploadFileHandler = async (e) => {
         const file = e.target.files[0]
@@ -108,6 +108,7 @@ const AddProduct = () => {
 
             const { data } = axios.post('https://nihashopbd.pythonanywhere.com/api/products/upload/', formData, config)
             // setImage(data.image)
+            console.log(data);
             setUploading(false)
             dispatch({ type: PRODUCT_CREATE_RESET })
             navigate('/admin/productlist')
@@ -143,7 +144,6 @@ const AddProduct = () => {
         dispatch(addProduct({
             name,
             price,
-            image,
             brand,
             category,
             countInStock,
@@ -170,7 +170,7 @@ const AddProduct = () => {
                                 onChange={uploadFileHandler}
 
                             />
-                            {loading ? (
+                            {/* {loading ? (
                                 "Uploading..."
                             ) : (
                                 <Paper
@@ -181,7 +181,7 @@ const AddProduct = () => {
                                     <img src={image ? image.url : ""} alt="" />
                                     <span >X</span>
                                 </Paper>
-                            )}
+                            )} */}
                         </div>
                     </Grid>
                     <Grid item xl={7} lg={7} md={7} xs={12} >

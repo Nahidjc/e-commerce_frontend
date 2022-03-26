@@ -3,20 +3,20 @@ import styled from 'styled-components'
 import { FaSearch } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 const Product = ({ image, name, price, _id }) => {
-    return (
-        <Wrapper>
-            <div className='container'>
-                <img src={`http://127.0.0.1:8000${image}`} alt={name} />
-                <Link to={`/product/${_id}`} className='link'>
-                    <FaSearch />
-                </Link>
-            </div>
-            <footer>
-                <h5>{name}</h5>
-                <p>${price}</p>
-            </footer>
-        </Wrapper>
-    )
+  return (
+    <Wrapper>
+      <div className='container'>
+        <img src={`https://nihashopbd.pythonanywhere.com${image}`} alt={name} />
+        <Link to={`/product/${_id}`} className='link'>
+          <FaSearch />
+        </Link>
+      </div>
+      <footer>
+        <h5>{name}</h5>
+        <p>${price}</p>
+      </footer>
+    </Wrapper>
+  )
 }
 const Wrapper = styled.article`
   .container {

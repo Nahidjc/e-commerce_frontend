@@ -3,21 +3,21 @@ import styled from 'styled-components'
 import logo from '../../assets/logo.svg'
 import { FaBars } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
-import { logout } from '../../actions/userActions'
+import { useSelector } from 'react-redux'
+// import { logout } from '../../actions/userActions'
 import CartButton from './CartButton'
-import { MY_ORDER_RESET } from '../../constants/orderConstants'
+// import { MY_ORDER_RESET } from '../../constants/orderConstants'
 
 const NavbarNew = () => {
-  const cart = useSelector(state => state.cart);
-  const { cartItems } = cart;
+  // const cart = useSelector(state => state.cart);
+  // const { cartItems } = cart;
   const userLogin = useSelector(state => state.userLogin);
-  const dispatch = useDispatch()
+  // const dispatch = useDispatch()
   const { userInfo } = userLogin
-  const logoutHandler = () => {
-    dispatch(logout())
-    dispatch({ 'type': MY_ORDER_RESET })
-  }
+  // const logoutHandler = () => {
+  //   dispatch(logout())
+  //   dispatch({ 'type': MY_ORDER_RESET })
+  // }
   return (
     <NavContainer>
       <div className='nav-center'>

@@ -27,7 +27,7 @@ const SingleProductPage = () => {
   const userLogin = useSelector(state => state.userLogin);
   const { userInfo } = userLogin
   const reviewProduct = useSelector(state => state.reviewProduct);
-  const { loading: reviewLoading, successReview, error: reviewError, data } = reviewProduct
+  const { loading: reviewLoading, successReview, error: reviewError } = reviewProduct
   const productList = useSelector(state => state.productList)
   const { error: relatedProductError, loading: relatedLading, products } = productList
 

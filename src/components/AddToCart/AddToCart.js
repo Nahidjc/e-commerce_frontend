@@ -1,13 +1,12 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import AmountButtons from './AmountButtons'
-import { useDispatch } from 'react-redux'
 
 const AddToCart = ({ item }) => {
   let params = useParams();
-  const { _id, countInStock } = item
-  const history = useNavigate();
+  const { countInStock } = item
+
   const [amount, setAmount] = useState(1)
 
 

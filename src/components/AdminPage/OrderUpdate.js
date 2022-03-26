@@ -80,11 +80,11 @@ const OrderUpdate = () => {
     const dispatch = useDispatch();
     const history = useNavigate();
     const orderDetails = useSelector(state => state.orderDetails);
-    const { error, loading, order, success: orderDetailsSuccess } = orderDetails;
+    const { error, loading, order } = orderDetails;
     const userLogin = useSelector(state => state.userLogin);
     const { userInfo } = userLogin
     const orderUpdate = useSelector(state => state.orderUpdate);
-    const { UpdateSuccess, loading: updateLoading } = orderUpdate
+    const { UpdateSuccess } = orderUpdate
 
     const params = useParams()
     const orderId = params.id

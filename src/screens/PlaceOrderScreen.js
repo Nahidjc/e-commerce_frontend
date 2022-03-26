@@ -25,7 +25,7 @@ const PlaceOrderScreen = () => {
             navigate(`/order/${order._id}`)
             dispatch({ type: ORDER_CREATE_RESET })
         }
-    }, [success, navigate])
+    }, [success, dispatch, navigate, order._id])
 
     if (!cart.paymentMethod) {
         navigate('/payment')

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { createTheme } from '@mui/material/styles';
 import './AddProduct.css'
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
@@ -11,7 +10,7 @@ import Container from '@mui/material/Container';
 
 
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import { Bars } from "react-loader-spinner";
 
@@ -48,7 +47,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const mdTheme = createTheme();
+
 
 const AddProduct = () => {
     const classes = useStyles();
@@ -66,8 +65,8 @@ const AddProduct = () => {
     const dispatch = useDispatch();
     const history = useNavigate();
     const navigate = useNavigate()
-    const userLogin = useSelector(state => state.userLogin);
-    const { userInfo } = userLogin
+    // const userLogin = useSelector(state => state.userLogin);
+    // const { userInfo } = userLogin
     const formData = new FormData()
 
     const createProduct = useSelector(state => state.createProduct);

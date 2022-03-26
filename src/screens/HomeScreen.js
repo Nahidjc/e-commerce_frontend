@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import Product from '../components/Product';
 import { useDispatch, useSelector } from 'react-redux';
 import { listProducts } from '../actions/productActions';
 import Message from '../components/Message';
 import { Bars } from 'react-loader-spinner'
-import { styled } from '@mui/material/styles';
-import Paper from '@mui/material/Paper';
+
 import ProductCarosel from '../components/ProductCarosel';
 import FilterCategory from '../components/FilterCategory';
 import Searchbar from './SearchBar/SearchBar';
@@ -16,11 +15,9 @@ import Stack from '@mui/material/Stack';
 const HomeScreen = () => {
     const dispatch = useDispatch()
     const productList = useSelector(state => state.productList)
-    const { error, loading, products, page, pages } = productList
-    const [Page, setPage] = useState(1);
+    const { error, loading, products, pages } = productList
     const handlePageChange = (event, value) => {
-        console.log(value);
-        setPage(value);
+
         dispatch(listProducts({ "searchValue": '', 'page': value }))
 
     };

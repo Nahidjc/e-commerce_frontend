@@ -83,7 +83,7 @@ const UserUpdate = () => {
     const userLogin = useSelector(state => state.userLogin);
     const { userInfo } = userLogin
     const userUpdate = useSelector(state => state.userUpdate);
-    const { success, loading: updateLoading } = userUpdate
+    const { success, } = userUpdate
 
     const params = useParams()
     const userId = params.id
@@ -113,7 +113,7 @@ const UserUpdate = () => {
         }
 
 
-    }, [user, userId, history])
+    }, [userInfo, user, dispatch, success, userId, history])
 
 
     const handleSubmit = (event) => {

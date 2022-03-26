@@ -34,7 +34,7 @@ export const listProducts = (Value = {}) => async (dispatch) => {
     try {
         dispatch({ type: PRODUCT_LIST_REQUEST })
         const { data } = await axios.post(
-            'http://127.0.0.1:8000/api/products/',
+            'https://nihashopbd.pythonanywhere.com/api/products/',
             ProductValue
         )
 
@@ -61,7 +61,7 @@ export const listProductDetails = (id) => async (dispatch) => {
 
 
 
-        const { data } = await axios.get(`http://127.0.0.1:8000/api/products/${id}`)
+        const { data } = await axios.get(`https://nihashopbd.pythonanywhere.com/api/products/${id}`)
 
         dispatch({
             type: PRODUCT_DETAILS_SUCCESS,
@@ -93,7 +93,7 @@ export const addProduct = (product) => async (dispatch, getState) => {
         }
 
         const { data } = await axios.post(
-            `http://127.0.0.1:8000/api/products/create/`,
+            `https://nihashopbd.pythonanywhere.com/api/products/create/`,
             product,
             config
         )
@@ -130,7 +130,7 @@ export const getDeleteProduct = (id) => async (dispatch, getState) => {
             }
         }
         const { data } = await axios.delete(
-            `http://127.0.0.1:8000/api/products/delete/${id}/`,
+            `https://nihashopbd.pythonanywhere.com/api/products/delete/${id}/`,
             config
         )
 
@@ -164,7 +164,7 @@ export const addProductReview = (review) => async (dispatch, getState) => {
         }
 
         const { data } = await axios.post(
-            `http://127.0.0.1:8000/api/products/${review._id}/review/`,
+            `https://nihashopbd.pythonanywhere.com/api/products/${review._id}/review/`,
             review,
             config
         )

@@ -39,7 +39,7 @@ export const login = (email, password) => async (dispatch) => {
             }
         }
         const { data } = await axios.post(
-            'http://127.0.0.1:8000/api/users/login',
+            'https://nihashopbd.pythonanywhere.com/api/users/login',
             { 'username': email, 'password': password },
             config
         )
@@ -81,7 +81,7 @@ export const register = (name, email, password) => async (dispatch) => {
             }
         }
         const { data } = await axios.post(
-            'http://127.0.0.1:8000/api/users/register',
+            'https://nihashopbd.pythonanywhere.com/api/users/register',
             { 'name': name, 'email': email, 'password': password },
             config
         )
@@ -124,7 +124,7 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
             }
         }
         const { data } = await axios.get(
-            `http://127.0.0.1:8000/api/users/${id}`,
+            `https://nihashopbd.pythonanywhere.com/api/users/${id}`,
             config
         )
         dispatch({
@@ -159,7 +159,7 @@ export const getUserUpdateProfile = (user) => async (dispatch, getState) => {
             }
         }
         const { data } = await axios.put(
-            `http://127.0.0.1:8000/api/users/profile/update/`,
+            `https://nihashopbd.pythonanywhere.com/api/users/profile/update/`,
             user,
             config
         )
@@ -200,7 +200,7 @@ export const getUserList = () => async (dispatch, getState) => {
             }
         }
         const { data } = await axios.get(
-            `http://127.0.0.1:8000/api/users/`,
+            `https://nihashopbd.pythonanywhere.com/api/users/`,
             config
         )
         dispatch({
@@ -237,7 +237,7 @@ export const getUserUpdate = (user) => async (dispatch, getState) => {
             }
         }
         const { data } = await axios.put(
-            `http://127.0.0.1:8000/api/users/update/${user.id}/`,
+            `https://nihashopbd.pythonanywhere.com/api/users/update/${user.id}/`,
             user,
             config
         )

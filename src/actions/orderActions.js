@@ -43,7 +43,7 @@ export const createOrder = (order) => async (dispatch, getState) => {
             }
         }
         const { data } = await axios.post(
-            `http://127.0.0.1:8000/api/orders/add/`,
+            `https://nihashopbd.pythonanywhere.com/api/orders/add/`,
             order,
             config
         )
@@ -88,7 +88,7 @@ export const getOrderDetails = (id) => async (dispatch, getState) => {
             }
         }
         const { data } = await axios.get(
-            `http://127.0.0.1:8000/api/orders/${id}/`,
+            `https://nihashopbd.pythonanywhere.com/api/orders/${id}/`,
             config
         )
         dispatch({
@@ -132,7 +132,7 @@ export const payOrder = (id, paymentResult) => async (dispatch, getState) => {
         }
 
         const { data } = await axios.put(
-            `http://127.0.0.1:8000/api/orders/${id}/pay/`,
+            `https://nihashopbd.pythonanywhere.com/api/orders/${id}/pay/`,
             paymentResult,
             config
         )
@@ -174,7 +174,7 @@ export const getMyOrders = () => async (dispatch, getState) => {
         }
 
         const { data } = await axios.get(
-            `http://127.0.0.1:8000/api/orders/my/orders/`,
+            `https://nihashopbd.pythonanywhere.com/api/orders/my/orders/`,
             config
         )
 
@@ -214,7 +214,7 @@ export const getTotalOrders = () => async (dispatch, getState) => {
         }
 
         const { data } = await axios.get(
-            `http://127.0.0.1:8000/api/orders/total/orders/`,
+            `https://nihashopbd.pythonanywhere.com/api/orders/total/orders/`,
             config
         )
 
@@ -253,7 +253,7 @@ export const getOrderUpdate = (order) => async (dispatch, getState) => {
             }
         }
         const { data } = await axios.put(
-            `http://127.0.0.1:8000/api/orders/update/${order._id}/`,
+            `https://nihashopbd.pythonanywhere.com/api/orders/update/${order._id}/`,
             order,
             config
         )

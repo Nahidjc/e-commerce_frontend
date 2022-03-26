@@ -107,7 +107,7 @@ const AddProduct = () => {
                 }
             }
 
-            const { data } = axios.post('http://127.0.0.1:8000/api/products/upload/', formData, config)
+            const { data } = axios.post('https://nihashopbd.pythonanywhere.com/api/products/upload/', formData, config)
             // setImage(data.image)
             setUploading(false)
             dispatch({ type: PRODUCT_CREATE_RESET })

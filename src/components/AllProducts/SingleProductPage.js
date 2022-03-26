@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { Form, Button } from 'semantic-ui-react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'

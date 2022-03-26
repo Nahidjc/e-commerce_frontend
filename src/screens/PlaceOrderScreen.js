@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import { Button, Card, Col, Container, Form, Image, ListGroup, Row } from 'react-bootstrap';
+import React, { useEffect } from 'react';
+import { Button, Card, Col, Image, ListGroup, Row } from 'react-bootstrap';
 import { Bars } from 'react-loader-spinner';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
-import { savePaymentMethod, saveShippingAddress } from '../actions/cartActions';
+import { Link, useNavigate } from 'react-router-dom';
+
 import { createOrder } from '../actions/orderActions';
 import CheckoutSteps from '../components/CheckoutSteps';
 import Message from '../components/Message';
 import { ORDER_CREATE_RESET } from '../constants/orderConstants';
 const PlaceOrderScreen = () => {
-    let location = useLocation();
+
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const orderCreate = useSelector(state => state.orderCreate)

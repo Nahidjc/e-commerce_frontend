@@ -4,12 +4,9 @@ import {
 
 } from "@material-ui/core";
 import React from "react";
-// import Avatar from "react-avatar";
 
 import { Slide } from "react-slideshow-image";
 import "react-slideshow-image/dist/styles.css";
-// import { GlobalState } from "../GlobalState";
-// import Skeleton from "react-loading-skeleton";
 
 const images = [
     {

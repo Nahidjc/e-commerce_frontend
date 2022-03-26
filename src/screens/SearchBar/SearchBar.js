@@ -2,7 +2,6 @@ import { React, useState } from "react";
 import "./Searchbar.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { FormControl, Form, Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
 import { listProducts } from "../../actions/productActions";
 import { useDispatch } from "react-redux";
 

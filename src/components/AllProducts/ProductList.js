@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { listProducts } from '../../actions/productActions'
 
 import GridView from './GridView'
-import ListView from './ListView'
 const ProductList = () => {
     const dispatch = useDispatch()
     const productList = useSelector(state => state.productList)

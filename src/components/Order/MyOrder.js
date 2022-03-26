@@ -1,19 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useEffect } from 'react'
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
 import Container from '@mui/material/Container';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { getMyOrders } from '../../actions/orderActions';
 import Message from '../Message';
 import { Bars } from 'react-loader-spinner';
-import { Typography } from '@mui/material';
+
 
 
 const MyOrder = () => {

@@ -11,8 +11,8 @@ import Container from '@mui/material/Container';
 
 
 import { useDispatch, useSelector } from "react-redux";
-import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
-import Message from "../Message";
+import { useNavigate, useParams } from "react-router-dom";
+
 import { Bars } from "react-loader-spinner";
 
 import { makeStyles, Paper } from "@material-ui/core";
@@ -61,7 +61,7 @@ const AddProduct = () => {
     const [countInStock, setStock] = useState(0);
     const [description, setDescription] = useState("");
     const [category, setCategory] = useState("");
-    const [open, setOpen] = useState(true);
+
 
     const dispatch = useDispatch();
     const history = useNavigate();
@@ -72,7 +72,7 @@ const AddProduct = () => {
 
     const createProduct = useSelector(state => state.createProduct);
     const { product, loading: addProductLoading, successProduct, error } = createProduct
-    const params = useParams()
+
     useEffect(() => {
         if (successProduct) {
 

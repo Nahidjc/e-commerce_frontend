@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Col, Container, Form, Row } from 'react-bootstrap';
+import { Button, Col, Form, Row } from 'react-bootstrap';
 import { Bars } from 'react-loader-spinner';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
-import { getUserDetails, getUserUpdateProfile, login, register } from '../actions/userActions';
+import { useNavigate } from 'react-router-dom';
+import { getUserDetails, getUserUpdateProfile } from '../actions/userActions';
 import FormContainer from '../components/FormContainer';
 import Message from '../components/Message';
 import { USER_UPDATE_PROFILE_RESET } from '../constants/userConstants';

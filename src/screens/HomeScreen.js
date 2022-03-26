@@ -1,27 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import { Col, Row } from 'react-bootstrap';
 import Product from '../components/Product';
 import { useDispatch, useSelector } from 'react-redux';
 import { listProducts } from '../actions/productActions';
 import Message from '../components/Message';
 import { Bars } from 'react-loader-spinner'
-import { Grid } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import ProductCarosel from '../components/ProductCarosel';
 import FilterCategory from '../components/FilterCategory';
-import FeaturedProducts from '../components/FeatureProduct/FeaturedProducts';
 import Searchbar from './SearchBar/SearchBar';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 
-const Item = styled(Paper)(({ theme }) => ({
-    ...theme.typography.body2,
-    padding: theme.spacing(1),
-    textAlign: 'center',
-    color: theme.palette.text.secondary,
-}));
 
 const HomeScreen = () => {
     const dispatch = useDispatch()

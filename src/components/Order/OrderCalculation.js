@@ -9,23 +9,14 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { useSelector } from 'react-redux';
 
-const TAX_RATE = 0.07;
+
 let sum = 0;
-function ccyFormat(num) {
-    let num1 = Number(num)
-    return `${num1.toFixed(2)}`;
-}
 
 function priceRow(qty, unit) {
     let num1 = Number(qty)
     let num2 = Number(unit)
     sum = sum + (num1 * num2)
     return num1 * num2;
-}
-function priceAdd(qty, unit) {
-    let num1 = Number(qty)
-    let num2 = Number(unit)
-    return num1 + num2;
 }
 
 

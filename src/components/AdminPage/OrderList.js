@@ -14,8 +14,6 @@ import { mainListItems, secondaryListItems } from './listItems';
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getUserList } from "../../actions/userActions";
-import Message from "../Message";
-import { Bars } from "react-loader-spinner";
 import Orders from "./Orders";
 import { Grid, Paper } from "@material-ui/core";
 

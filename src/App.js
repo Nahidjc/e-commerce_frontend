@@ -25,7 +25,6 @@ import UserList from "./components/AdminPage/UserList";
 import UserUpdate from "./components/AdminPage/UserUpdate";
 import Products from "./components/AdminPage/Products";
 import OrderList from "./components/AdminPage/OrderList";
-import { ConfirmProvider } from "material-ui-confirm";
 import AddProduct from "./components/AdminPage/AddProduct";
 import OrderUpdate from "./components/AdminPage/OrderUpdate";
 function App() {

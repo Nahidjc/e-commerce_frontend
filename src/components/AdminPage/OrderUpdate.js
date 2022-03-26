@@ -8,14 +8,12 @@ import List from '@mui/material/List';
 
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
-import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import Grid from '@mui/material/Grid';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 
@@ -24,10 +22,8 @@ import { mainListItems, secondaryListItems } from './listItems';
 
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { getUserDetails, getUserUpdate } from "../../actions/userActions";
 import Message from "../Message";
 import { Bars } from "react-loader-spinner";
-import { USER_UPDATE_RESET } from "../../constants/userConstants";
 import { getOrderDetails, getOrderUpdate } from "../../actions/orderActions";
 import { ORDER_UPDATE_RESET } from "../../constants/orderConstants";
 

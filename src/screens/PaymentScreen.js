@@ -1,14 +1,13 @@
 import { Radio } from '@material-ui/core';
-import React, { useEffect, useState } from 'react';
-import { Button, Col, Container, Row, Form } from 'react-bootstrap';
-import { Bars } from 'react-loader-spinner';
+import React, { useState } from 'react';
+import { Button, Form } from 'react-bootstrap';
+
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
-import { savePaymentMethod, saveShippingAddress } from '../actions/cartActions';
+import { useNavigate } from 'react-router-dom';
+import { savePaymentMethod } from '../actions/cartActions';
 import CheckoutSteps from '../components/CheckoutSteps';
-import FormContainer from '../components/FormContainer';
 const PaymentScreen = () => {
-    let location = useLocation();
+
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const cart = useSelector(state => state.cart)

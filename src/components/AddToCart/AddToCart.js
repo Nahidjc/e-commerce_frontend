@@ -1,22 +1,15 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import { Link, useNavigate, useParams } from 'react-router-dom'
-import { FaCheck } from 'react-icons/fa'
 import AmountButtons from './AmountButtons'
-import { addToCart } from '../../actions/cartActions'
 import { useDispatch } from 'react-redux'
-import { Button } from '@mui/material'
 
 const AddToCart = ({ item }) => {
   let params = useParams();
   const { _id, countInStock } = item
   const history = useNavigate();
   const [amount, setAmount] = useState(1)
-  const addToCartHandler = () => {
 
-    history(`/cart/${params.id}?qty=${amount}`)
-  }
-  const dispatch = useDispatch()
 
   const increase = () => {
     setAmount((oldAmount) => {

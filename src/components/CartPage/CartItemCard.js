@@ -1,4 +1,4 @@
-import { useState } from "react";
+
 import { useDispatch } from "react-redux";
 import { addToCart, removeFromCart } from "../../actions/cartActions";
 import "./CartItemCard.css";

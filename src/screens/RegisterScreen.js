@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Col, Container, Form, Row } from 'react-bootstrap';
+import { Button, Col, Form, Row } from 'react-bootstrap';
 import { Bars } from 'react-loader-spinner';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
-import { login, register } from '../actions/userActions';
+import { register } from '../actions/userActions';
 import FormContainer from '../components/FormContainer';
 import Message from '../components/Message';
 
@@ -15,7 +15,6 @@ const RegisterScreen = () => {
     const [confirmPassword, setConfirmPassword] = useState('');
 
     let location = useLocation();
-    let params = useParams();
     const dispatch = useDispatch();
     const history = useNavigate();
     const redirect = location.search ? location.search.split('=')[1] : '/';

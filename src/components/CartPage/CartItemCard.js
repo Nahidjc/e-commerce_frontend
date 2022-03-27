@@ -26,7 +26,7 @@ export default function CartItemCard({ item }) {
     return (
         <div className="Item-container">
             <div className="Item-details">
-                <img className="Item-image" src={`http://127.0.0.1:8000${item.image}`} alt="" />
+                <img className="Item-image" src={`https://nihashopbd.pythonanywhere.com${item.image}`} alt="" />
                 <div className="Item-desc">
                     <div className="Item-details-main">
                         <div className="Item-name-container">

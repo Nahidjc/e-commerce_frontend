@@ -11,8 +11,7 @@ const CartScreen = () => {
     const dispatch = useDispatch();
     const history = useNavigate();
     const productId = params.id;
-    const userLogin = useSelector(state => state.userLogin);
-    const { userInfo } = userLogin
+
     const qty = location.search ? Number(location.search.split('=')[1]) : 1
 
     const cart = useSelector(state => state.cart);
@@ -48,7 +47,7 @@ const CartScreen = () => {
                             <ListGroup.Item key={item.product}>
                                 <Row>
                                     <Col md={2}>
-                                        <Image src={`http://127.0.0.1:8000${item.image}`} alt={item.name} fluid rounded />
+                                        <Image src={`https://nihashopbd.pythonanywhere.com${item.image}`} alt={item.name} fluid rounded />
                                     </Col>
                                     <Col md={3}>
                                         <Link style={{ textDecoration: 'none' }} to={`/product/${item.product}`}>{item.name}</Link>

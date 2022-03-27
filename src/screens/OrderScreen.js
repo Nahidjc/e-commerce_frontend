@@ -150,7 +150,7 @@ const OrderScreen = () => {
                                         <ListGroup.Item key={index}>
                                             <Row>
                                                 <Col md={2}>
-                                                    <Image src={`http://127.0.0.1:8000${item.image}`} alt={item.name} fluid rounded />
+                                                    <Image src={`https://nihashopbd.pythonanywhere.com${item.image}`} alt={item.name} fluid rounded />
                                                 </Col>
 
                                                 <Col>

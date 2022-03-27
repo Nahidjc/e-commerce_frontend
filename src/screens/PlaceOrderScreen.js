@@ -25,7 +25,7 @@ const PlaceOrderScreen = () => {
             navigate(`/order/${order._id}`)
             dispatch({ type: ORDER_CREATE_RESET })
         }
-    }, [success, dispatch, navigate, order._id])
+    }, [success, dispatch, navigate, order])
 
     if (!cart.paymentMethod) {
         navigate('/payment')
@@ -83,7 +83,7 @@ const PlaceOrderScreen = () => {
                                     <ListGroup.Item key={index}>
                                         <Row>
                                             <Col md={1}>
-                                                <Image src={`http://127.0.0.1:8000${item.image}`} alt={item.name} fluid rounded />
+                                                <Image src={`https://nihashopbd.pythonanywhere.com${item.image}`} alt={item.name} fluid rounded />
                                             </Col>
                                             <Col>
                                                 <Link to={`/product/${item.product}`}>{item.name}</Link>

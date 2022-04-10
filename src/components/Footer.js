@@ -1,5 +1,5 @@
 import React from "react";
-import { Segment, Container, Grid, List } from "semantic-ui-react";
+import { Container, Grid, List, Segment } from "semantic-ui-react";
 import './Footer.css';
 const Footer = () => (
 
@@ -38,7 +38,7 @@ const Footer = () => (
                         <h4 inverted>Contact Us</h4>
                         <div>
                             <span>70 Washington Square South, New York, NY 10012, United States</span><br />
-                            <span>Email: nahidjc80@gmail.com</span><br />
+                            <span>Email: zthshop@gmail.com</span><br />
                             <span>Phone: 01910125428</span>
 
                         </div>
@@ -46,7 +46,7 @@ const Footer = () => (
                 </Grid.Row>
             </Grid>
             <Grid.Column className='text-center mt-4'>
-                Copyright &copy; NihaShopBD
+                Copyright &copy; ZTHShopBD
 
             </Grid.Column>
         </Container>

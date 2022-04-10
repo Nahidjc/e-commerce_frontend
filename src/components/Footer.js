@@ -38,8 +38,8 @@ const Footer = () => (
                         <h4 inverted>Contact Us</h4>
                         <div>
                             <span>70 Washington Square South, New York, NY 10012, United States</span><br />
-                            <span>Email: zthshop@gmail.com</span><br />
-                            <span>Phone: 01910125428</span>
+                            <span>Email: zthshopbd@gmail.com</span><br />
+                            <span>Phone: 01717974694</span>
 
                         </div>
                     </Grid.Column>
